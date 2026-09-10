@@ -96,6 +96,28 @@ Funciona, pero el sitio queda en `usuario.github.io/ola`, así que hay que añad
 `basePath: "/ola"` y `assetPrefix: "/ola"` en `next.config.mjs` — salvo que uses
 dominio propio o renombres el repo a `usuario.github.io`.
 
+### La imagen para compartir (og-image)
+
+Hoy la genera [`app/opengraph-image.tsx`](app/opengraph-image.tsx) en tiempo de
+build, para que nunca haya un 404 ni un PNG pesado en el repo. Para poner la
+imagen de diseño definitiva:
+
+1. Guardala como **`app/opengraph-image.png`** (1200x630; apunta a menos de
+   300 KB para que la vista previa cargue rapido con mala conexion).
+2. **Borra `app/opengraph-image.tsx`** — el `.tsx` y el `.png` no pueden convivir
+   en la misma carpeta.
+3. Crea **`app/opengraph-image.alt.txt`** con el texto alternativo.
+4. En [`content/site.ts`](content/site.ts), cambia `OG_IMAGE` a
+   `"/opengraph-image.png"`. Solo lo usa el JSON-LD, que no se entera solo.
+
+Next detecta el archivo por convencion y rellena `og:image`, su tipo, sus
+dimensiones y el alt. El objeto `metadata` **no** puede sobrescribir esto: el
+archivo tiene prioridad.
+
+Con un `.png` de verdad el nombre lleva extension, asi que el host ya sirve el
+`Content-Type` correcto y la regla del `_headers` deja de hacer falta (queda
+inofensiva).
+
 ### El archivo `_headers`
 
 [`public/_headers`](public/_headers) lo leen Cloudflare Pages y Netlify. Declara

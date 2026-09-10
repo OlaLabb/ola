@@ -10,6 +10,14 @@
 /** URL canonica del sitio. Cambiala cuando exista dominio propio. */
 export const SITE_URL = "https://olalab.vercel.app";
 
+/**
+ * Ruta de la imagen para compartir en redes.
+ * Hoy la genera app/opengraph-image.tsx. El dia que exista la imagen de diseño:
+ * guardala como app/opengraph-image.png, borra el .tsx y cambia este valor a
+ * "/opengraph-image.png".
+ */
+export const OG_IMAGE = "/opengraph-image";
+
 /** Correo unico de contacto de la iniciativa. */
 export const EMAIL = "olalabgimti@gmail.com";
 
@@ -50,6 +58,8 @@ export const seo = {
   titleTemplate: "%s | OLA LAB",
   description:
     "OLA LAB es un laboratorio itinerante que lleva talleres de programación, inteligencia artificial e innovación a estudiantes de 9°, 10° y 11° en los colegios del Pacífico colombiano. Una iniciativa social de GIMTI S.A.S.",
+  /** Texto alternativo de la imagen para compartir. */
+  imagenAlt: "OLA LAB — Que la distancia no decida el futuro de nadie.",
   keywords: [
     "OLA LAB",
     "tecnología Pacífico colombiano",

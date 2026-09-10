@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Poppins } from "next/font/google";
 
 import "./globals.css";
-import { EMAIL, SITE_URL, brand, seo } from "@/content/site";
+import { EMAIL, OG_IMAGE, SITE_URL, brand, seo } from "@/content/site";
 
 /**
  * Tipografia:
@@ -45,6 +45,7 @@ export const metadata: Metadata = {
     title: seo.title,
     description: seo.description,
   },
+
   twitter: {
     card: "summary_large_image",
     title: seo.title,
@@ -70,8 +71,8 @@ const jsonLd = {
   name: "OLA LAB",
   alternateName: "ola lab",
   url: SITE_URL,
-  logo: `${SITE_URL}/opengraph-image`,
-  image: `${SITE_URL}/opengraph-image`,
+  logo: `${SITE_URL}${OG_IMAGE}`,
+  image: `${SITE_URL}${OG_IMAGE}`,
   description: seo.description,
   email: EMAIL,
   areaServed: "Pacífico colombiano",

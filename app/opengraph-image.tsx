@@ -1,13 +1,27 @@
 import { ImageResponse } from "next/og";
 
-import { hero } from "@/content/site";
+import { hero, seo } from "@/content/site";
 
 /**
- * Imagen para compartir en redes, generada por Next en tiempo de build.
- * Al vivir como ruta nunca hay un 404 de og-image ni un PNG pesado en el repo.
- * Se reutiliza como logo/imagen del JSON-LD.
- */
-export const alt = "OLA LAB — Que la distancia no decida el futuro de nadie.";
+ * ---------------------------------------------------------------------------
+ * IMAGEN PARA COMPARTIR EN REDES (1200x630)
+ * ---------------------------------------------------------------------------
+ * Esto es un PROVISIONAL generado por codigo: sirve para que nunca haya un 404
+ * de og-image ni un PNG pesado en el repo mientras no exista la imagen de
+ * verdad.
+ *
+ * PARA PONER LA IMAGEN DEFINITIVA:
+ *   1. Guardala como  app/opengraph-image.png   (1200x630, idealmente < 300 KB)
+ *   2. Borra ESTE archivo: no pueden convivir el .tsx y el .png
+ *   3. Crea  app/opengraph-image.alt.txt  con el texto alternativo
+ *   4. En content/site.ts, cambia OG_IMAGE a "/opengraph-image.png"
+ *      (lo usa el JSON-LD, que no se entera solo)
+ *
+ * Next detecta el archivo por convencion y rellena og:image, su tipo, sus
+ * dimensiones y el alt. El objeto `metadata` NO puede sobrescribir esto: el
+ * archivo tiene prioridad.
+ * ------------------------------------------------------------------------- */
+export const alt = seo.imagenAlt;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
