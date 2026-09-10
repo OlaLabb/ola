@@ -1,0 +1,7 @@
+# Por si el despliegue va por Netlify: mismo sitio estatico, sin plugin de Next.
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"

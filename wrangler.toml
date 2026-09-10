@@ -1,0 +1,20 @@
+# Configuracion explicita para Cloudflare.
+#
+# Sin este archivo, wrangler "autoconfigura" el proyecto: detecta Next.js y
+# lanza `npx opennextjs-cloudflare build`, que monta un runtime SSR sobre
+# Workers y rechaza Next 14 por politica de soporte. Esta pagina no tiene
+# backend ni SSR: es HTML plano exportado a out/.
+#
+# Al existir wrangler.toml, wrangler usa esto y no vuelve a adivinar.
+
+name = "ola"
+compatibility_date = "2025-09-01"
+
+# Genera out/ antes de desplegar.
+[build]
+command = "npm run build"
+
+# Worker de solo assets: sirve out/ tal cual, sin codigo de servidor.
+[assets]
+directory = "./out"
+not_found_handling = "404-page"
