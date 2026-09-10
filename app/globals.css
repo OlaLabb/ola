@@ -1,0 +1,339 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   ESCALA TIPOGRAFICA
+   Una sola escala para toda la pagina. Los saltos son grandes a proposito:
+   display >> titulo >> lead >> cuerpo. Asi la jerarquia se lee antes que el
+   texto.
+   ------------------------------------------------------------------------- */
+@layer base {
+  :root {
+    color-scheme: dark;
+
+    --paso-display: clamp(2.6rem, 8.2vw, 5.25rem);
+    --paso-titulo: clamp(1.95rem, 5vw, 3.25rem);
+    --paso-lead: clamp(1.05rem, 1.6vw, 1.35rem);
+    --paso-cuerpo: clamp(1rem, 1.15vw, 1.0625rem);
+    --paso-cita: clamp(1.25rem, 2.4vw, 1.75rem);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-noche text-espuma font-sans font-light antialiased;
+    /* Evita scroll horizontal accidental por las capas de olas. */
+    overflow-x: hidden;
+  }
+
+  /* Las anclas no quedan escondidas bajo el nav fijo. */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  /* Foco visible y consistente en TODOS los interactivos. */
+  :where(a, button, [tabindex]):focus-visible {
+    outline: 2px solid theme("colors.oceano");
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: theme("colors.oceano");
+    color: theme("colors.noche");
+  }
+}
+
+@layer components {
+  .contenedor {
+    @apply mx-auto w-full max-w-contenido px-5 sm:px-8;
+  }
+
+  .display {
+    font-size: var(--paso-display);
+    @apply font-extrabold leading-[0.98] tracking-[-0.035em];
+  }
+
+  .titulo-seccion {
+    font-size: var(--paso-titulo);
+    @apply font-extrabold leading-[1.03] tracking-[-0.03em];
+  }
+
+  .lead {
+    font-size: var(--paso-lead);
+    @apply leading-[1.65] text-bruma;
+  }
+
+  .cuerpo {
+    font-size: var(--paso-cuerpo);
+    @apply leading-[1.75];
+  }
+
+  .cita {
+    font-size: var(--paso-cita);
+    @apply font-semibold leading-[1.35] tracking-[-0.01em];
+  }
+
+  .kicker {
+    @apply inline-flex items-start gap-3 font-semibold uppercase tracking-[0.2em] text-[0.68rem] sm:text-[0.72rem];
+  }
+
+  /* Raya corta de color que precede al kicker: marca el inicio de seccion.
+     Se alinea con la PRIMERA linea, no con el centro del bloque, para que no
+     quede flotando cuando el texto ocupa dos o tres lineas. */
+  .kicker::before {
+    content: "";
+    display: block;
+    flex: none;
+    width: 1.75rem;
+    height: 1px;
+    margin-top: 0.72em;
+    background: currentColor;
+    opacity: 0.6;
+  }
+
+  .boton-base {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3
+           text-sm sm:text-base font-semibold transition-[transform,background-color,border-color,color]
+           duration-200 will-change-transform motion-safe:hover:-translate-y-0.5;
+  }
+
+  /* CTA de accion: el coral "atardecer" esta reservado para esto. */
+  .boton-accion {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3
+           text-sm sm:text-base font-semibold bg-atardecer text-noche
+           shadow-[0_10px_36px_-12px_rgba(255,178,94,0.85)]
+           transition-[transform,background-color,box-shadow] duration-200 will-change-transform
+           hover:bg-[#FFC585] hover:shadow-[0_14px_44px_-12px_rgba(255,178,94,1)]
+           motion-safe:hover:-translate-y-0.5;
+  }
+
+  /* CTA secundario: contorno oceano. */
+  .boton-linea {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3
+           text-sm sm:text-base font-semibold text-oceano border border-oceano/40
+           transition-[transform,background-color,border-color] duration-200 will-change-transform
+           hover:border-oceano hover:bg-oceano/10 motion-safe:hover:-translate-y-0.5;
+  }
+
+  /* Numero fantasma: da peso visual a las filas sin agregar ruido. */
+  .numero-fantasma {
+    @apply pointer-events-none select-none font-extrabold leading-none tracking-tighter;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+  }
+}
+
+@layer utilities {
+  /* Rejilla de laboratorio: lineas verticales casi invisibles que dan textura
+     a los fondos oscuros. Es un degradado CSS, no pesa nada. */
+  .textura-rejilla {
+    background-image: linear-gradient(
+      to right,
+      rgba(242, 247, 245, 0.035) 1px,
+      transparent 1px
+    );
+    background-size: 6.25rem 100%;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 18%,
+      #000 82%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 18%,
+      #000 82%,
+      transparent
+    );
+  }
+}
+
+/* --------------------------------------------------------------------------
+   MOVIMIENTO REDUCIDO
+   Un unico interruptor global: si el sistema lo pide, la pagina se queda
+   quieta (las olas se congelan, nada se desplaza).
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   EL MAR VIVO
+   Cada capa de ola es un SVG del doble de ancho que contiene el mismo trazo
+   dos veces. Desplazarlo exactamente -50% en X hace que el bucle sea
+   invisible: la ola nunca "salta". Solo animamos `transform` y `opacity`
+   para que todo el movimiento ocurra en la GPU.
+   -------------------------------------------------------------------------- */
+@keyframes ola-deriva {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes ola-deriva-inversa {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Burbujas de espuma: suben y se desvanecen sobre la cresta. */
+@keyframes espuma-flota {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.6);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate3d(12px, -52px, 0) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Destellos: laminas de luz que cruzan la superficie del agua. */
+@keyframes destello-cruza {
+  0% {
+    transform: translate3d(-30%, 0, 0) scaleX(0.6);
+    opacity: 0;
+  }
+  30%,
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(40%, 0, 0) scaleX(1);
+    opacity: 0;
+  }
+}
+
+/* Estrellas: parpadeo lento y desincronizado. */
+@keyframes titila {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.ola-svg {
+  width: 200%;
+  height: 100%;
+  display: block;
+  will-change: transform;
+  animation: ola-deriva var(--velocidad, 24s) linear infinite;
+}
+
+.ola-svg[data-sentido="inverso"] {
+  animation-name: ola-deriva-inversa;
+}
+
+.espuma-particula {
+  position: absolute;
+  border-radius: 9999px;
+  background: #cdeef7;
+  will-change: transform, opacity;
+  animation: espuma-flota var(--velocidad, 7s) ease-out infinite;
+  animation-delay: var(--retraso, 0s);
+}
+
+.destello {
+  position: absolute;
+  height: 1px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(205, 238, 247, 0.9),
+    transparent
+  );
+  will-change: transform, opacity;
+  animation: destello-cruza var(--velocidad, 16s) ease-in-out infinite;
+  animation-delay: var(--retraso, 0s);
+  opacity: 0;
+}
+
+.estrella {
+  position: absolute;
+  border-radius: 9999px;
+  background: #dff2f7;
+  animation: titila var(--velocidad, 6s) ease-in-out infinite;
+  animation-delay: var(--retraso, 0s);
+}
+
+/* Con movimiento reducido el mar se congela en una postal, no desaparece. */
+@media (prefers-reduced-motion: reduce) {
+  .ola-svg,
+  .espuma-particula,
+  .destello,
+  .estrella {
+    animation: none !important;
+  }
+
+  .espuma-particula,
+  .estrella {
+    opacity: 0.45;
+    transform: none;
+  }
+
+  .destello {
+    opacity: 0.35;
+    transform: none;
+  }
+}
+
+/* Destellos del camino de luz: se mecen sobre la superficie sin desaparecer. */
+@keyframes luz-mece {
+  0%,
+  100% {
+    transform: translate3d(-6%, 0, 0) scaleX(0.92);
+  }
+  50% {
+    transform: translate3d(6%, 0, 0) scaleX(1.08);
+  }
+}
+
+.destello-luz {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(
+    closest-side,
+    rgba(206, 243, 255, 0.95),
+    rgba(206, 243, 255, 0)
+  );
+  will-change: transform;
+  animation: luz-mece var(--velocidad, 20s) ease-in-out infinite;
+  animation-delay: var(--retraso, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .destello-luz {
+    animation: none !important;
+    transform: none;
+  }
+}
