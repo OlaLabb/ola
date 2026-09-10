@@ -7,8 +7,12 @@
  * ---------------------------------------------------------------------------
  */
 
-/** URL canonica del sitio. Cambiala cuando exista dominio propio. */
-export const SITE_URL = "https://olalab.vercel.app";
+/**
+ * URL canonica del sitio. De aqui salen el canonical, la Open Graph, el
+ * JSON-LD, el sitemap y el robots: cambiar esta linea es todo lo que hace falta
+ * el dia que haya dominio propio.
+ */
+export const SITE_URL = "https://ola.olalabgimti.workers.dev";
 
 /**
  * Ruta de la imagen para compartir en redes: app/opengraph-image.png.

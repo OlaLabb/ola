@@ -60,6 +60,8 @@ Cuando exista dominio propio, cambia **solo esa línea**:
 export const SITE_URL = "https://olalab.org";
 ```
 
+Hoy apunta a `https://ola.olalabgimti.workers.dev` (Cloudflare Workers).
+
 ## Deploy
 
 El sitio se exporta **100% estático** (`output: "export"` en
