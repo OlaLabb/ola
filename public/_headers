@@ -1,0 +1,11 @@
+# Cloudflare Pages y Netlify leen este archivo desde la raiz del sitio.
+
+# La imagen para redes se genera sin extension, asi que hay que declarar su
+# tipo a mano: sin esto WhatsApp y LinkedIn no muestran la vista previa.
+/opengraph-image
+  Content-Type: image/png
+  Cache-Control: public, max-age=3600
+
+# Los archivos con hash en el nombre no cambian nunca: cache agresivo.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable

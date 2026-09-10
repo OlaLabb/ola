@@ -16,10 +16,12 @@ npm run dev      # http://localhost:3000
 Otros comandos:
 
 ```bash
-npm run build    # build de producción
-npm run start    # sirve el build
+npm run build    # exporta el sitio estático a out/
 npm run lint
 ```
+
+Para previsualizar el build: `npx serve out` (o cualquier servidor estático).
+`next start` no aplica: el proyecto usa export estático.
 
 Requiere Node 18.18+ o 20+.
 
@@ -58,16 +60,54 @@ Cuando exista dominio propio, cambia **solo esa línea**:
 export const SITE_URL = "https://olalab.org";
 ```
 
-## Deploy en Vercel
+## Deploy
 
-1. Sube el repo a GitHub.
-2. En Vercel: *New Project* → importa el repo. El framework se detecta solo; no hay variables
-   de entorno ni build settings que tocar.
-3. Al conectar el dominio definitivo, actualiza `SITE_URL` y vuelve a desplegar.
+El sitio se exporta **100% estático** (`output: "export"` en
+[`next.config.mjs`](next.config.mjs)): `npm run build` deja en `out/` un sitio de
+~1,3 MB sin servidor Node, sin funciones y sin SSR. Corre en cualquier hosting
+estático.
 
-La imagen para compartir en redes se genera en build desde
-[`app/opengraph-image.tsx`](app/opengraph-image.tsx), así que nunca hay un 404 de og-image ni un
-PNG pesado en el repositorio.
+### Cloudflare Pages (recomendado)
+
+Ancho de banda ilimitado en el plan gratuito y buena latencia en Colombia.
+
+1. Dashboard → **Workers & Pages** → *Create* → pestaña **Pages** → *Connect to Git*
+   → elegir el repo.
+2. Configuración de build:
+   - Framework preset: **Next.js (Static HTML Export)** — o *None*, da igual
+   - Build command: `npm run build`
+   - Build output directory: `out`
+3. Deploy.
+
+> **No uses el flujo de Workers con OpenNext.** Cloudflare detecta "Next.js" e
+> intenta `npx opennextjs-cloudflare build`, que exige un runtime SSR y rechaza
+> Next 14 por su política de soporte. Esta página no necesita nada de eso: es
+> HTML plano. Si el proyecto ya quedó creado en ese modo, bórralo y créalo como
+> **Pages** con los ajustes de arriba.
+
+### Netlify
+
+*Add new site* → *Import an existing project* → build command `npm run build`,
+publish directory `out`.
+
+### GitHub Pages
+
+Funciona, pero el sitio queda en `usuario.github.io/ola`, así que hay que añadir
+`basePath: "/ola"` y `assetPrefix: "/ola"` en `next.config.mjs` — salvo que uses
+dominio propio o renombres el repo a `usuario.github.io`.
+
+### El archivo `_headers`
+
+[`public/_headers`](public/_headers) lo leen Cloudflare Pages y Netlify. Declara
+el `Content-Type` de `/opengraph-image` (Next la exporta sin extensión y, sin
+esto, WhatsApp y LinkedIn no muestran la vista previa) y cachea los assets con
+hash por un año.
+
+### Después del primer deploy
+
+Actualiza `SITE_URL` en [`content/site.ts`](content/site.ts) con la URL real
+(`https://ola.pages.dev` o tu dominio) y vuelve a desplegar: esa constante
+alimenta el canonical, la Open Graph, el JSON-LD, el sitemap y el robots.
 
 ## Identidad visual
 
