@@ -1,4 +1,5 @@
 import EncabezadoSeccion from "@/components/EncabezadoSeccion";
+import Icono from "@/components/Icono";
 import { ruta } from "@/content/site";
 
 /**
@@ -29,9 +30,10 @@ export default function Ruta() {
                     {/* El punto que se monta sobre la linea de tiempo. */}
                     <span
                       aria-hidden="true"
-                      className="absolute -left-[2.3rem] top-5 flex h-6 w-6 items-center justify-center rounded-full bg-noche text-sm sm:-left-[2.8rem]"
+                      className="absolute -left-[2.3rem] top-5 flex h-6 w-6 items-center justify-center rounded-full bg-noche sm:-left-[2.8rem]"
+                      style={{ color: paso.color }}
                     >
-                      {paso.emoji}
+                      <Icono nombre={paso.icono} className="h-[1.15rem] w-[1.15rem]" />
                     </span>
 
                     <div

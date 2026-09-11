@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import Icono from "@/components/Icono";
 import { SITE_URL, compartir } from "@/content/site";
 
 /**
@@ -39,7 +40,12 @@ export default function Compartir() {
   }
 
   return (
-    <button type="button" onClick={alCompartir} className="boton-linea">
+    <button
+      type="button"
+      onClick={alCompartir}
+      className="boton-linea inline-flex items-center gap-2"
+    >
+      <Icono nombre="ola" className="h-4 w-4 flex-none" />
       <span aria-live="polite">{copiado ? compartir.copiado : compartir.label}</span>
     </button>
   );

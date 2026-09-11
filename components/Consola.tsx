@@ -3,6 +3,7 @@
 import { useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 
 import EncabezadoSeccion from "@/components/EncabezadoSeccion";
+import Icono from "@/components/Icono";
 import { consola } from "@/content/site";
 
 /* ---------------------------------------------------------------------------
@@ -418,9 +419,11 @@ export default function Consola() {
                     >
                       {hechos[i] && (
                         <>
-                          <span aria-hidden="true" className="text-manglar">
-                            ✓
-                          </span>
+                          <Icono
+                            nombre="hecho"
+                            className="h-3.5 w-3.5 flex-none text-manglar"
+                            grosor={2}
+                          />
                           <span className="sr-only">{consola.completado}:</span>
                         </>
                       )}
@@ -446,7 +449,11 @@ export default function Consola() {
                   </div>
 
                   <div className="mt-7 flex flex-wrap items-center gap-3">
-                    <button type="submit" className="boton-accion">
+                    <button
+                      type="submit"
+                      className="boton-accion inline-flex items-center gap-2"
+                    >
+                      <Icono nombre="ejecutar" className="h-4 w-4" />
                       {consola.boton}
                     </button>
 
@@ -456,8 +463,9 @@ export default function Consola() {
                       <button
                         type="button"
                         onClick={() => ejecutar(2)}
-                        className="boton-linea"
+                        className="boton-linea inline-flex items-center gap-2"
                       >
+                        <Icono nombre="repetir" className="h-4 w-4" />
                         {consola.otraVez}
                       </button>
                     )}
@@ -486,6 +494,10 @@ export default function Consola() {
 
                   {/* El concepto: la frase que convierte el juego en clase. */}
                   <p className="mt-6 text-pretty text-sm leading-relaxed text-bruma">
+                    <Icono
+                      nombre="innovacion"
+                      className="mr-1.5 inline-block h-[1.1em] w-[1.1em] translate-y-[0.15em] text-manglar"
+                    />
                     <span className="font-semibold text-espuma">
                       {consola.conceptoEtiqueta}
                     </span>{" "}

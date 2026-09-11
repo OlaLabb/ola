@@ -7,6 +7,8 @@
  * ---------------------------------------------------------------------------
  */
 
+import type { NombreIcono } from "@/components/Icono";
+
 /**
  * URL canonica del sitio. De aqui salen el canonical, la Open Graph, el
  * JSON-LD, el sitemap y el robots: cambiar esta linea es todo lo que hace falta
@@ -215,6 +217,8 @@ export type Ola = {
   entregable: string;
   /** Color en hex: tine la olita, el nombre y el resplandor de la tarjeta. */
   color: string;
+  /** Marca de la ola: el icono que la nombra antes de leerla. Ver components/Icono.tsx. */
+  icono: NombreIcono;
 };
 
 export const olas = {
@@ -226,7 +230,7 @@ export const olas = {
   /** Linea que se revela en cada tarjeta, antes del entregable. */
   prefijoEntregable: "Al surfearla te llevas:",
   cierre:
-    "Cada ola que surfeas te deja una insignia. Y cuando completas la marea… ya no eres el mismo. 🌊",
+    "Cada ola que surfeas te deja una insignia. Y cuando completas la marea… ya no eres el mismo.",
   items: [
     {
       id: "programacion",
@@ -234,6 +238,7 @@ export const olas = {
       promesa: "Aprende a hablarle a las máquinas — y a que te obedezcan.",
       entregable: "tu primer programa funcionando",
       color: "#78DCA0",
+      icono: "programacion",
     },
     {
       id: "ia",
@@ -242,6 +247,7 @@ export const olas = {
         "Descubre cómo se le enseña a pensar a una máquina (y por qué tú mandas).",
       entregable: "tu primer asistente inteligente",
       color: "#FF8A73",
+      icono: "ia",
     },
     {
       id: "innovacion",
@@ -249,6 +255,7 @@ export const olas = {
       promesa: "Convierte los problemas de tu territorio en ideas que valen.",
       entregable: "una idea de tu territorio convertida en proyecto",
       color: "#5AC8EB",
+      icono: "innovacion",
     },
     {
       id: "datos",
@@ -256,6 +263,7 @@ export const olas = {
       promesa: "Lee las historias escondidas en los números.",
       entregable: "un análisis real con datos de tu región",
       color: "#7FD8D8",
+      icono: "datos",
     },
     {
       id: "diseno",
@@ -263,6 +271,7 @@ export const olas = {
       promesa: "Crea tecnología que la gente ame usar.",
       entregable: "el diseño de tu primera app",
       color: "#F2A0C0",
+      icono: "diseno",
     },
     {
       id: "automatizacion",
@@ -271,6 +280,7 @@ export const olas = {
         "Pon a los robots a hacer lo aburrido, para que tú hagas lo importante.",
       entregable: "un robot que trabaja por ti",
       color: "#9B8CFF",
+      icono: "automatizacion",
     },
     {
       id: "seguridad",
@@ -278,6 +288,7 @@ export const olas = {
       promesa: "Aprende a proteger lo que el mundo digital quiere robar.",
       entregable: "el escudo digital de tu familia",
       color: "#5A8CEB",
+      icono: "seguridad",
     },
   ] satisfies Ola[],
 };
@@ -285,7 +296,8 @@ export const olas = {
 export type Camino = {
   id: string;
   nombre: string;
-  emoji: string;
+  /** Ver components/Icono.tsx. */
+  icono: NombreIcono;
   /** Color en hex: se usa en el chip activo y en el panel. */
   color: string;
   frase: string;
@@ -306,7 +318,7 @@ export const caminos = {
     {
       id: "desarrollo",
       nombre: "Desarrollo de software",
-      emoji: "💻",
+      icono: "programacion",
       color: "#78DCA0",
       frase: "Construyes las apps y páginas que millones usan a diario.",
       diaTipico:
@@ -315,7 +327,7 @@ export const caminos = {
     {
       id: "datos",
       nombre: "Ciencia de datos",
-      emoji: "📊",
+      icono: "datos",
       color: "#5AC8EB",
       frase: "Encuentras historias y respuestas escondidas en los números.",
       diaTipico:
@@ -324,7 +336,7 @@ export const caminos = {
     {
       id: "ia",
       nombre: "Inteligencia artificial",
-      emoji: "🤖",
+      icono: "ia",
       color: "#FFB25E",
       frase: "Enseñas a las máquinas a ver, entender y ayudar.",
       diaTipico:
@@ -333,7 +345,7 @@ export const caminos = {
     {
       id: "diseno",
       nombre: "Diseño digital",
-      emoji: "🎨",
+      icono: "diseno",
       color: "#F2A0C0",
       frase: "Haces que la tecnología se sienta fácil y bonita de usar.",
       diaTipico:
@@ -342,7 +354,7 @@ export const caminos = {
     {
       id: "ciberseguridad",
       nombre: "Ciberseguridad",
-      emoji: "🛡️",
+      icono: "seguridad",
       color: "#9B8CFF",
       frase: "Proteges la información de las personas y las empresas.",
       diaTipico:
@@ -351,7 +363,7 @@ export const caminos = {
     {
       id: "redes",
       nombre: "Redes y nube",
-      emoji: "☁️",
+      icono: "nube",
       color: "#7FD8D8",
       frase:
         "Mantienes al mundo conectado, desde el celular hasta el satélite.",
@@ -377,9 +389,9 @@ export const consola = {
   titulo: "Programa aquí mismo, ahora mismo.",
   sub: "Cuatro retos con código real. Del aula a tu pantalla — sin instalar nada.",
   etiqueta: "ola-lab — laboratorio",
-  boton: "▶ Ejecutar",
-  otraVez: "🔁 Otra vez",
-  conceptoEtiqueta: "🧠 Lo que acabas de usar:",
+  boton: "Ejecutar",
+  otraVez: "Otra vez",
+  conceptoEtiqueta: "Lo que acabas de usar:",
   completado: "reto completado",
   avisoFecha: "Elige tu fecha de nacimiento para ejecutar.",
   retos: [
@@ -423,7 +435,7 @@ export const consola = {
   ],
   final: {
     texto:
-      "🏄 Acabas de surfear tu primera mini-ola de programación. Esto es solo la orilla — imagínate el mar completo.",
+      "Acabas de surfear tu primera mini-ola de programación. Esto es solo la orilla — imagínate el mar completo.",
     cta: {
       label:
         "¿Eres profe o profesional? Trae la ola completa a más estudiantes →",
@@ -482,6 +494,15 @@ export const colegios = {
   ],
 };
 
+export type Paso = {
+  /** Ver components/Icono.tsx. */
+  icono: NombreIcono;
+  titulo: string;
+  etiqueta: string;
+  estado: "hecho" | "encurso" | "proximo";
+  color: string;
+};
+
 /**
  * Bitacora honesta: donde va la ola hoy. El paso `encurso` es el unico
  * resaltado — es el que explica por que la convocatoria viene justo despues.
@@ -492,27 +513,27 @@ export const ruta = {
   titulo: "¿Dónde va la ola?",
   pasos: [
     {
-      emoji: "✅",
+      icono: "hecho",
       titulo: "La idea tomó forma",
       etiqueta: "Hecho",
       estado: "hecho",
       color: "#78DCA0",
     },
     {
-      emoji: "🌊",
+      icono: "ola",
       titulo: "Construyendo la marea: voluntarios + guía de estudio",
       etiqueta: "En curso",
       estado: "encurso",
       color: "#5AC8EB",
     },
     {
-      emoji: "⏳",
+      icono: "reloj",
       titulo: "Primeras marejadas en colegios",
       etiqueta: "Próximamente",
       estado: "proximo",
       color: "#B9C6C4",
     },
-  ],
+  ] satisfies Paso[],
   nota: "Este espacio se irá llenando de fotos e historias reales.",
 };
 
@@ -585,7 +606,7 @@ export const traeLaOla = {
 
 /** Boton de compartir del footer: navigator.share y, si no hay, copiar enlace. */
 export const compartir = {
-  label: "Compartir esta ola 🌊",
+  label: "Compartir esta ola",
   copiado: "¡Enlace copiado!",
   titulo: "OLA LAB",
   texto: "Que la distancia no decida el futuro de nadie.",

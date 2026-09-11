@@ -4,6 +4,7 @@ import { useRef, useState, type KeyboardEvent } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 
 import EncabezadoSeccion from "@/components/EncabezadoSeccion";
+import Icono from "@/components/Icono";
 import Movimiento from "@/components/Movimiento";
 import { caminos } from "@/content/site";
 
@@ -113,9 +114,7 @@ export default function Caminos() {
                           : "border-white/[0.08] bg-white/[0.02] text-bruma hover:border-white/20 hover:text-espuma"
                       }`}
                   >
-                    <span aria-hidden="true" className="text-base">
-                      {c.emoji}
-                    </span>
+                    <Icono nombre={c.icono} className="h-5 w-5 flex-none" />
                     {c.nombre}
                   </button>
                 );
@@ -160,13 +159,12 @@ export default function Caminos() {
                   />
 
                   <div className="relative">
-                    <p
-                      aria-hidden="true"
-                      className="text-4xl sm:text-5xl"
-                      style={{ filter: "saturate(1.05)" }}
-                    >
-                      {camino.emoji}
-                    </p>
+                    {/* El icono del camino, a la escala del panel y en su color. */}
+                    <Icono
+                      nombre={camino.icono}
+                      className="h-11 w-11 sm:h-12 sm:w-12"
+                      grosor={1.35}
+                    />
 
                     <p
                       className="cita mt-6 max-w-[26ch] text-pretty"

@@ -1,4 +1,5 @@
 import EncabezadoSeccion from "@/components/EncabezadoSeccion";
+import Icono from "@/components/Icono";
 import { olas } from "@/content/site";
 
 /* ---------------------------------------------------------------------------
@@ -75,27 +76,35 @@ export default function Olas() {
                 }}
               />
 
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                viewBox="0 0 120 32"
-                className="relative block h-8 w-[7.5rem]"
-              >
-                <g
-                  className="olita-trazo"
-                  // Retraso negativo: cada ola arranca en otro punto de su
-                  // ciclo, asi las siete no se mueven en bloque.
-                  style={{ animationDelay: `-${i * 2.6}s` }}
+              {/* La olita abre la fila y el icono la remata: la ola a la
+                  izquierda, la marca del tema a la derecha. */}
+              <div className="relative flex items-center justify-between gap-4">
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  viewBox="0 0 120 32"
+                  className="block h-8 w-[7.5rem]"
                 >
-                  <path
-                    d={OLITA}
-                    fill="none"
-                    stroke="var(--ola-color)"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                  />
-                </g>
-              </svg>
+                  <g
+                    className="olita-trazo"
+                    // Retraso negativo: cada ola arranca en otro punto de su
+                    // ciclo, asi las siete no se mueven en bloque.
+                    style={{ animationDelay: `-${i * 2.6}s` }}
+                  >
+                    <path
+                      d={OLITA}
+                      fill="none"
+                      stroke="var(--ola-color)"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                    />
+                  </g>
+                </svg>
+
+                <span style={{ color: ola.color }}>
+                  <Icono nombre={ola.icono} className="h-7 w-7" />
+                </span>
+              </div>
 
               <h3
                 className="relative mt-5 text-pretty text-lg font-semibold leading-snug"

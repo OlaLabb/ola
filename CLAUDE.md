@@ -132,18 +132,32 @@ Los íconos deben ser **SVG propios, de línea fina**, coherentes con la **doble
 logo** ([`app/icon.svg`](app/icon.svg): dos trazos de ola, uno azul y uno verde,
 `stroke-linecap="round"`).
 
-**Nada de emojis en la UI.** Nada de librerías de íconos. Referencias de estilo ya
-implementadas: `IconoOlas` e `IconoCerrar` en [`components/Nav.tsx`](components/Nav.tsx), la
-olita de las tarjetas en [`components/Olas.tsx`](components/Olas.tsx) y
+**Nada de emojis en la UI.** Nada de librerías de íconos.
+
+Todos los íconos viven en [`components/Icono.tsx`](components/Icono.tsx), un registro de
+trazos en caja de 24×24: `stroke` de 1.5, sin relleno, puntas y esquinas redondeadas. El
+color **no** vive en el ícono — el trazo es `currentColor`, así que el mismo ícono sirve
+sobre `noche` con los acentos normales y sobre `espuma` con la familia `tinta.*` sin
+duplicarse.
+
+```tsx
+<Icono nombre="programacion" className="h-7 w-7" />   // decorativo: se esconde de los lectores
+<Icono nombre="hecho" titulo="reto completado" />     // con significado: lleva <title>
+```
+
+Siete son las marcas de las olas (`programacion` `ia` `innovacion` `datos` `diseno`
+`automatizacion` `seguridad`) y se nombran como dato en `content/site.ts`, junto al color;
+los otros seis (`nube` `ola` `hecho` `reloj` `ejecutar` `repetir`) son utilitarios. Para
+agregar uno: una entrada más en `TRAZOS`. **Si un ícono se dibuja dos veces, es que le falta
+nombre** — nada de SVG sueltos en los componentes.
+
+Las excepciones son las piezas que no son íconos sino ilustración: `IconoOlas` e
+`IconoCerrar` en [`components/Nav.tsx`](components/Nav.tsx), la olita animada de las
+tarjetas en [`components/Olas.tsx`](components/Olas.tsx) y
 [`components/OlaDivisoria.tsx`](components/OlaDivisoria.tsx).
 
-> **Deuda pendiente:** todavía quedan emojis en la UI heredados de versiones anteriores —
-> `caminos.items[].emoji`, `ruta.pasos[].emoji`, y los botones/etiquetas de la consola
-> (`▶`, `🔁`, `🧠`), además del cierre de las olas y del botón de compartir. Son
-> candidatos a reemplazo por SVG propios. No los introduzcas en código nuevo; si tocas una
-> de esas secciones para otra cosa, avisa antes de cambiarlos (ver regla de trabajo abajo).
-> *(Los emojis dentro de los strings del código de la consola son otra cosa: son la salida
-> del programa del estudiante, no la UI.)*
+> Los emojis dentro de los strings del código de la consola se quedan: son la salida del
+> programa del estudiante, no la UI.
 
 ---
 
