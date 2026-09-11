@@ -125,6 +125,50 @@
     @apply pointer-events-none select-none font-extrabold leading-none tracking-tighter;
     font-size: clamp(3.5rem, 9vw, 7rem);
   }
+
+  /* ------------------------------------------------------------------------
+     SUPERFICIE CLARA
+     ------------------------------------------------------------------------
+     Dos secciones respiran sobre `espuma` (el laboratorio y colegios): son los
+     dos momentos en que la pagina pide que HAGAS algo, no que leas. El resto
+     del sitio es noche.
+
+     Todo lo que la pagina da por sentado sobre fondo oscuro deja de servir
+     aqui, asi que se corrige en un solo lugar en vez de parchear cada
+     componente: el texto secundario, el contorno de los botones y —lo mas
+     facil de olvidar— el anillo de foco, que en `oceano` sobre espuma da 1.78
+     de contraste y desaparece.
+     ------------------------------------------------------------------------ */
+  .superficie-clara {
+    @apply bg-espuma text-noche;
+    color-scheme: light;
+  }
+
+  /* `.lead` trae `text-bruma` quemado: sobre espuma da 1.62 (ilegible). */
+  .superficie-clara .lead {
+    @apply text-tinta-texto;
+  }
+
+  /* El CTA conserva el coral de marca —es su unico lugar en toda la pagina—
+     pero sobre espuma da 1.65 de contraste no textual: como forma, el boton
+     no existe. El contorno `noche` es lo que lo vuelve un boton otra vez. */
+  .superficie-clara .boton-accion {
+    @apply border border-noche;
+    box-shadow: 0 10px 30px -14px rgba(10, 14, 18, 0.55);
+  }
+
+  .superficie-clara .boton-accion:hover {
+    box-shadow: 0 14px 38px -14px rgba(10, 14, 18, 0.7);
+  }
+
+  .superficie-clara .boton-linea {
+    @apply text-tinta-oceano border-tinta-oceano/45 hover:border-tinta-oceano hover:bg-tinta-oceano/10;
+  }
+
+  /* El foco tiene que verse igual de bien en las dos orillas. */
+  .superficie-clara :where(a, button, [tabindex]):focus-visible {
+    outline-color: theme("colors.tinta.oceano");
+  }
 }
 
 @layer utilities {

@@ -32,6 +32,31 @@ const config: Config = {
           bruma: "#12303B",
           abismo: "#07202B",
         },
+        /**
+         * TINTA — la paleta para superficies claras.
+         *
+         * Los acentos de la marca estan calibrados para brillar sobre `noche`
+         * (todos pasan 8:1 o mas). Sobre `espuma` se desploman: `manglar` da
+         * 1.55, `oceano` 1.78, `bruma` 1.62. Ilegibles.
+         *
+         * `tinta.*` es el mismo tono con la saturacion contenida (<=0.62, para
+         * que no quede neon) y bajado hasta pasar AA de texto (>=4.6:1) sobre
+         * `espuma`. Se usa UNICAMENTE para texto e iconos sobre fondo claro;
+         * sobre fondo oscuro se siguen usando los acentos normales.
+         */
+        tinta: {
+          oceano: "#227893",
+          manglar: "#217E46",
+          turquesa: "#257A7A",
+          violeta: "#6C5BD9",
+          coral: "#CB306C",
+          ia: "#C1462D",
+          seguridad: "#356BD0",
+          /** El equivalente de `bruma` en claro: texto secundario. 8:1. */
+          texto: "#3E4E54",
+          /** Lineas y bordes sutiles sobre espuma. */
+          linea: "#C3D0CD",
+        },
       },
       fontFamily: {
         sans: ["var(--font-poppins)", "system-ui", "sans-serif"],
