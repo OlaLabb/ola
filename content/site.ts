@@ -313,24 +313,74 @@ export const caminos = {
 };
 
 /**
- * La consola: la unica pieza de la pagina donde el visitante TOCA. El texto de
- * salida lleva {nombre}, que se reemplaza al ejecutar.
+ * EL LABORATORIO
+ * Cuatro retos con codigo real: el codigo que se ve en pantalla es exactamente
+ * el que corre. Aqui viven los textos; la estructura del codigo (con sus
+ * inputs incrustados) vive en components/Consola.tsx, porque es marcado, no
+ * copia.
+ *
+ * `pordefecto` es a la vez el placeholder del input y el valor con el que
+ * corre el reto si el estudiante lo deja vacio: nunca se ejecuta en blanco.
  */
 export const consola = {
   id: "consola",
   kicker: "pruébalo",
-  titulo: "Tu primera línea de código, aquí mismo.",
-  sub: "¿Nunca has programado? Perfecto. Escribe tu nombre y presiona el botón.",
-  etiqueta: "ola-lab — terminal",
-  funcion: "hola",
-  placeholder: "tu nombre",
-  /** Si el input queda vacio, la ola igual saluda. */
-  nombrePorDefecto: "amig@",
+  titulo: "Programa aquí mismo, ahora mismo.",
+  sub: "Cuatro retos con código real. Del aula a tu pantalla — sin instalar nada.",
+  etiqueta: "ola-lab — laboratorio",
   boton: "▶ Ejecutar",
-  salida:
-    "¡{nombre}, acabas de programar. El Pacífico te está esperando en la tecnología. 🌊",
-  pie: "Eso que sentiste se llama crear.",
-  pieHref: "#voluntarios",
+  otraVez: "🔁 Otra vez",
+  conceptoEtiqueta: "🧠 Lo que acabas de usar:",
+  completado: "reto completado",
+  avisoFecha: "Elige tu fecha de nacimiento para ejecutar.",
+  retos: [
+    {
+      id: "saludo",
+      tab: "Salúdate",
+      concepto:
+        "Usaste una FUNCIÓN: una máquina que recibe algo (tu nombre) y devuelve algo nuevo.",
+      campos: [{ etiqueta: "tu nombre", pordefecto: "amig@" }],
+    },
+    {
+      id: "notas",
+      tab: "¿Vas pasando el año?",
+      concepto:
+        "Usaste un CONDICIONAL: el código tomó una decisión solito según tus notas.",
+      campos: [
+        { etiqueta: "primera nota", pordefecto: "3.5" },
+        { etiqueta: "segunda nota", pordefecto: "4.2" },
+        { etiqueta: "tercera nota", pordefecto: "2.8" },
+      ],
+    },
+    {
+      id: "presenta",
+      tab: "¿Quién presenta hoy?",
+      concepto:
+        "Usaste una LISTA y el AZAR: así funcionan las rifas, los sorteos... y las recomendaciones de tus apps.",
+      campos: [
+        { etiqueta: "primer compañero", pordefecto: "Ana" },
+        { etiqueta: "segundo compañero", pordefecto: "Luis" },
+        { etiqueta: "tercer compañero", pordefecto: "Sara" },
+        { etiqueta: "cuarto compañero", pordefecto: "Tú" },
+      ],
+    },
+    {
+      id: "dias",
+      tab: "¿Cuántos días llevas vivo?",
+      concepto:
+        "Usaste DATOS y CÁLCULO: convertiste una fecha en un número que nunca habías pensado.",
+      campos: [{ etiqueta: "tu fecha de nacimiento", pordefecto: "" }],
+    },
+  ],
+  final: {
+    texto:
+      "🏄 Acabas de surfear tu primera mini-ola de programación. Esto es solo la orilla — imagínate el mar completo.",
+    cta: {
+      label:
+        "¿Eres profe o profesional? Trae la ola completa a más estudiantes →",
+      href: "#voluntarios",
+    },
+  },
 };
 
 export const paraQuien = {
