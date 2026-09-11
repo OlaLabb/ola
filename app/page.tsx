@@ -8,7 +8,7 @@ import OlaDivisoria from "@/components/OlaDivisoria";
 import Olas from "@/components/Olas";
 import QueEs from "@/components/QueEs";
 import Ruta from "@/components/Ruta";
-import Voluntarios from "@/components/Voluntarios";
+import TraeLaOla from "@/components/TraeLaOla";
 
 export default function Page() {
   return (
@@ -36,7 +36,7 @@ export default function Page() {
         <Ruta />
         {/* La ola anuncia el momento importante: la convocatoria. */}
         <OlaDivisoria arriba="#0A0E12" abajo="#12303B" />
-        <Voluntarios />
+        <TraeLaOla />
       </main>
 
       <OlaDivisoria arriba="#12303B" abajo="#07202B" />

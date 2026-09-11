@@ -74,7 +74,7 @@ export const seo = {
 
 export const nav = {
   cta: "Quiero ser voluntario",
-  ctaHref: "#voluntarios",
+  ctaHref: "#trae-la-ola",
   abrirMenu: "Abrir menú",
   cerrarMenu: "Cerrar menú",
   /** Anclas del menu: cada `href` es el id real de su seccion. */
@@ -94,7 +94,7 @@ export const hero = {
   /** Fragmento del titulo que se pinta en cian. Debe existir dentro de `titulo`. */
   resaltar: "la distancia",
   sub: "Llevamos programación, inteligencia artificial e innovación a estudiantes de 9°, 10° y 11° en los colegios del territorio Pacífico.",
-  ctaPrimario: { label: "Compartir mi conocimiento", href: "#voluntarios" },
+  ctaPrimario: { label: "Compartir mi conocimiento", href: "#trae-la-ola" },
   ctaSecundario: { label: "Conocer la iniciativa", href: "#que-es" },
   codigo: "// pacifico.conectar()",
   /** Ficha del laboratorio: acompaña al hero en pantallas grandes. */
@@ -414,7 +414,7 @@ export const consola = {
     cta: {
       label:
         "¿Eres profe o profesional? Trae la ola completa a más estudiantes →",
-      href: "#voluntarios",
+      href: "#trae-la-ola",
     },
   },
 };
@@ -503,11 +503,22 @@ export const ruta = {
   nota: "Este espacio se irá llenando de fotos e historias reales.",
 };
 
-export const voluntarios = {
-  id: "voluntarios",
-  kicker: "Convocatoria abierta",
+/**
+ * ---------------------------------------------------------------------------
+ * TRAE LA OLA
+ * ---------------------------------------------------------------------------
+ * El objetivo numero uno de la pagina. Se llamaba "voluntarios", que es como
+ * lo llamamos nosotros por dentro; "trae la ola" es como se dice en la marca y
+ * es, ademas, una invitacion en vez de una categoria.
+ *
+ * Dos orillas: las personas y las empresas. Las dos traen ola.
+ * ---------------------------------------------------------------------------
+ */
+export const traeLaOla = {
+  id: "trae-la-ola",
+  kicker: "trae la ola",
   titulo: "¿Dominas tu área? El Pacífico te necesita.",
-  /** Frase corta que conecta el voluntariado con el lenguaje de olas. */
+  /** La frase que explica el nombre de la seccion. */
   frase: "Los voluntarios son los que traen la ola.",
   texto:
     "Buscamos profesionales voluntarios — de desarrollo, datos, diseño, IA, ciberseguridad o cualquier frente tech — para construir la guía de estudio y traer las olas al territorio en lenguaje claro.",
@@ -529,6 +540,7 @@ export const voluntarios = {
   },
   /** Segunda orilla de la convocatoria: las empresas tambien traen ola. */
   empresas: {
+    kicker: "la otra orilla",
     titulo: "¿Tienes una empresa? Trae la ola con nosotros.",
     texto:
       "Equipos, conectividad, espacios o patrocinio: lo que su empresa pueda aportar se convierte en horas de tecnología para estudiantes del Pacífico.",
