@@ -76,6 +76,47 @@ de sección.
 **Regla dura:** `atardecer` (`#FFB25E`) es solo para CTAs. Si aparece en un elemento que no
 es una llamada a la acción, es un error.
 
+**Segunda regla dura:** el color de la Ola de IA (`#FF8A73`) **nunca** se usa como fondo de
+algo con forma de botón (píldora, `rounded-full`, relleno sólido). Está a 24° de tono del
+`atardecer` de los CTAs y a esa distancia se confunden. Como texto sobre tarjeta no hay
+problema; como relleno, sí. Si hace falta rellenar, se usa `tinta.ia`.
+
+### La paleta clara: `tinta.*`
+
+Toda la paleta está calibrada para brillar sobre `noche` (todos los acentos pasan 8:1 o
+más). **Sobre `espuma` se desploma**: `manglar` da 1.55, `oceano` 1.78, `bruma` 1.62 — todos
+ilegibles. Por eso existe `tinta.*`: el mismo tono, con la saturación contenida (≤0.62, para
+que no quede neón) y bajado hasta pasar AA de texto (≥4.6:1) sobre `espuma`.
+
+| Token | Hex | Sobre espuma |
+| --- | --- | --- |
+| `tinta.oceano` | `#227893` | 4.65 |
+| `tinta.manglar` | `#217E46` | 4.69 |
+| `tinta.turquesa` | `#257A7A` | 4.68 |
+| `tinta.violeta` | `#6C5BD9` | 4.69 |
+| `tinta.coral` | `#CB306C` | 4.64 |
+| `tinta.ia` | `#C1462D` | 4.64 |
+| `tinta.seguridad` | `#356BD0` | 4.66 |
+| `tinta.texto` | `#3E4E54` | 8.01 — el `bruma` de las superficies claras |
+| `tinta.linea` | `#C3D0CD` | bordes sutiles |
+
+`tinta.*` es **solo para texto e iconos sobre fondo claro**. Sobre fondo oscuro se siguen
+usando los acentos normales.
+
+### Superficies claras
+
+Dos secciones van sobre `espuma` — **el laboratorio y colegios** — porque son los dos
+momentos en que la página pide que *hagas* algo, no que leas. Se marcan con la clase
+`.superficie-clara`, que corrige en un solo sitio lo que el resto de la página da por
+sentado: el texto secundario, el contorno del CTA (que sobre espuma da 1.65 de contraste no
+textual y deja de leerse como botón) y el anillo de foco.
+
+Dentro de una sección clara puede haber una **isla oscura** — la terminal del laboratorio —
+marcada con `.superficie-oscura`: ahí dentro vuelven a regir las reglas de la noche.
+
+Si añades una sección clara: `.superficie-clara` en el `<section>`, `tono="claro"` en su
+`EncabezadoSeccion`, y colores `tinta.*` para todo el texto de acento.
+
 ### Tipografía
 
 - **Poppins** (300 cuerpo / 600 títulos / 800 display) — `font-sans`.
@@ -101,6 +142,8 @@ olita de las tarjetas en [`components/Olas.tsx`](components/Olas.tsx) y
 > (`▶`, `🔁`, `🧠`), además del cierre de las olas y del botón de compartir. Son
 > candidatos a reemplazo por SVG propios. No los introduzcas en código nuevo; si tocas una
 > de esas secciones para otra cosa, avisa antes de cambiarlos (ver regla de trabajo abajo).
+> *(Los emojis dentro de los strings del código de la consola son otra cosa: son la salida
+> del programa del estudiante, no la UI.)*
 
 ---
 
@@ -168,25 +211,38 @@ public/_headers         Cache de assets (lo leen Cloudflare Pages y Netlify)
 
 ### Orden de la página ([`app/page.tsx`](app/page.tsx))
 
+El orden cuenta una historia: **primero el viaje completo del estudiante, entero y sin
+interrupciones** (gancho → olas → probarlo → a dónde lleva), luego el tramo para colegios, y
+al final quienes traen la ola.
+
 | # | Sección | Componente | Fondo |
 | --- | --- | --- | --- |
 | — | Hero + mar vivo | [`Hero`](components/Hero.tsx) + [`MarVivo`](components/MarVivo.tsx) + [`Estrellas`](components/Estrellas.tsx) | `noche` |
-| 01 | Qué es | [`QueEs`](components/QueEs.tsx) | `profundo` |
-| 02 | Los 4 frentes | [`Frentes`](components/Frentes.tsx) | `noche` |
-| 03 | **Las olas** | [`Olas`](components/Olas.tsx) | degradado a `profundo.abismo` |
+| 01 | Qué es *(+ los 4 frentes)* | [`QueEs`](components/QueEs.tsx) | `profundo` |
+| 02 | **Las olas** | [`Olas`](components/Olas.tsx) | degradado → `profundo.abismo` |
+| 03 | **Pruébalo** *(el laboratorio)* | [`Consola`](components/Consola.tsx) | **`espuma`** ← claro |
 | 04 | Los caminos | [`Caminos`](components/Caminos.tsx) | `profundo.abismo` |
-| 05 | **El laboratorio** | [`Consola`](components/Consola.tsx) | `profundo.bruma` |
-| 06 | Para quién | [`ParaQuien`](components/ParaQuien.tsx) | `noche` |
-| 07 | FAQ de colegios | [`Faq`](components/Faq.tsx) | `profundo.abismo` |
-| 08 | Bitácora / ¿dónde va la ola? | [`Ruta`](components/Ruta.tsx) | `noche` |
-| — | Convocatoria de voluntarios | [`Voluntarios`](components/Voluntarios.tsx) | `profundo.bruma` |
+| 05 | Colegios *(+ las preguntas)* | [`Colegios`](components/Colegios.tsx) | **`espuma`** ← claro |
+| 06 | Bitácora / ¿dónde va la ola? | [`Ruta`](components/Ruta.tsx) | `noche` |
+| — | Trae la ola *(personas + empresas)* | [`TraeLaOla`](components/TraeLaOla.tsx) | `profundo.bruma` |
 | — | Footer | [`Footer`](components/Footer.tsx) + [`Compartir`](components/Compartir.tsx) | `profundo.abismo` |
+
+Por qué el laboratorio va **antes** de los caminos: "¿a dónde lleva esto?" solo tiene
+sentido después de haber hecho algo, no antes.
+
+Cada cruce oscuro↔claro se cose con una [`OlaDivisoria`](components/OlaDivisoria.tsx). El
+trazo de su cresta se dibuja **sobre la sección de arriba**, así que lleva `trazo="oscuro"`
+cuando esa sección es clara. Los fondos reales viven en la constante `FONDO` de
+`app/page.tsx` para que no haya que adivinarlos.
 
 Transversales: [`Nav`](components/Nav.tsx) (fijo, con `IntersectionObserver` para el enlace
 activo), [`EncabezadoSeccion`](components/EncabezadoSeccion.tsx) (el rail de número + kicker
-que da ritmo a todas las secciones), [`OlaDivisoria`](components/OlaDivisoria.tsx),
+que da ritmo a todas las secciones; acepta `tono="claro"`),
 [`Wordmark`](components/Wordmark.tsx), [`Movimiento`](components/Movimiento.tsx)
 (`LazyMotion` de Framer Motion — dentro se usa `m.*`, nunca `motion.*`).
+
+El **nav** son cuatro destinos: tres anclas (Las olas · Pruébalo · Colegios) y el CTA "Trae
+la ola", que va aparte porque es el único que pide algo.
 
 Solo son *client components* los que lo necesitan: `Hero`, `MarVivo`, `Nav`, `Caminos`,
 `Consola`, `Compartir`, `Movimiento`. Todo lo demás se renderiza en el servidor.
