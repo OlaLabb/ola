@@ -2,7 +2,6 @@ import Caminos from "@/components/Caminos";
 import Consola from "@/components/Consola";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
-import Frentes from "@/components/Frentes";
 import Hero from "@/components/Hero";
 import Nav from "@/components/Nav";
 import OlaDivisoria from "@/components/OlaDivisoria";
@@ -28,7 +27,6 @@ export default function Page() {
       <main id="contenido">
         <Hero />
         <QueEs />
-        <Frentes />
         {/* Las olas: el programa contado como marea, antes de los caminos. */}
         <Olas />
         <Caminos />

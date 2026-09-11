@@ -106,52 +106,72 @@ export const hero = {
   ],
 };
 
+/**
+ * ---------------------------------------------------------------------------
+ * QUE ES OLA LAB
+ * ---------------------------------------------------------------------------
+ * Una sola seccion corta. Antes eran dos (el contexto y los cuatro frentes) y
+ * entre las dos pedian scroll antes de que la pagina hubiera demostrado nada.
+ * Ahora: tres frases para entender de que va esto, y los cuatro frentes como
+ * una fila compacta —un titular y una linea cada uno— para que se lean de un
+ * vistazo en vez de leerse enteros.
+ *
+ * La tercera frase y `pieEstudiante` vienen de la vieja columna "Si eres
+ * estudiante": es el unico momento en que la pagina le habla de tu a tu al
+ * estudiante y le baja la barrera de entrada. Sin ella, "esto es para gente
+ * que ya sabe" se queda sin respuesta.
+ * ---------------------------------------------------------------------------
+ */
+export type Frente = {
+  titulo: string;
+  texto: string;
+  /** Clave de color: tine la barra lateral y el numero de la fila. */
+  color: "oceano" | "manglar" | "turquesa" | "coral";
+};
+
 export const queEs = {
   id: "que-es",
   kicker: "¿Qué es ola lab?",
   parrafos: [
     "En las ciudades, un estudiante curioso encuentra cursos, mentores y ejemplos a la vuelta de la esquina. En muchos rincones del Pacífico, ese mismo talento crece sin que nadie le muestre que la tecnología también es para él.",
-    "OLA LAB existe para cerrar esa distancia: un laboratorio itinerante de tecnología, inteligencia artificial e innovación que llega a los colegios del territorio ola por ola, con mentores y una guía de estudio construida por profesionales que dominan su área.",
+    "OLA LAB es un laboratorio itinerante que llega a los colegios del territorio, ola por ola, con mentores que ya viven de esto y una guía hecha por gente que domina lo suyo.",
+    "Si cursas 9°, 10° u 11° en un colegio del Pacífico y te pica la curiosidad, ya cumpliste el único requisito: nunca hace falta haber escrito una línea de código.",
   ],
   destacado:
     "El conocimiento que no se comparte, se desperdicia. Nosotros lo vamos a compartir donde más se necesita.",
+  /** La accion que le queda al estudiante: nosotros llegamos por su colegio. */
+  pieEstudiante:
+    "Pregunta en tu colegio por OLA LAB, o cuéntales a tus profes de esta iniciativa.",
   sello: "Una iniciativa social de GIMTI S.A.S. — software factory colombiana.",
-};
 
-export type Frente = {
-  titulo: string;
-  texto: string;
-  /** Clave de color: define la barra lateral y el numero de la fila. */
-  color: "oceano" | "manglar" | "atardecer" | "coral";
-};
-
-export const frentes = {
-  id: "frentes",
-  kicker: "Lo que vamos a hacer",
-  titulo: "Cuatro frentes, una sola idea: acercar lo que estaba lejos.",
-  items: [
+  frentesKicker: "lo que hacemos",
+  /**
+   * El tercer frente usaba `atardecer`, que esta reservado para los CTA: un
+   * frente no es una llamada a la accion. Pasa a `turquesa`.
+   */
+  frentes: [
     {
-      titulo: "Olas de tecnología e IA en tu colegio",
+      titulo: "Olas en tu colegio",
       texto:
-        "Cada ola es una sesión práctica de programación, inteligencia artificial o innovación que llega a los colegios del Pacífico, en un lenguaje que cualquier estudiante entiende desde el primer minuto.",
+        "Sesiones prácticas de programación, IA e innovación, en tu propia aula.",
       color: "oceano",
     },
     {
-      titulo: "Una guía de estudio hecha por profesionales",
+      titulo: "Una guía de verdad",
       texto:
-        "Expertos que dominan su área construyen el material: real, actualizado y pensado para aprender haciendo — no para memorizar.",
+        "Material hecho por profesionales de cada área, para aprender haciendo.",
       color: "manglar",
     },
     {
-      titulo: "Mentores que ya recorrieron el camino",
+      titulo: "Mentores de carne y hueso",
       texto:
-        "Profesionales voluntarios acompañan a los estudiantes, responden sus preguntas y les muestran que sí se puede vivir de la tecnología.",
-      color: "atardecer",
+        "Gente que ya vive de la tecnología, respondiendo tus preguntas de frente.",
+      color: "turquesa",
     },
     {
-      titulo: "Orientación para elegir tu ruta",
+      titulo: "Tu ruta, no la de otro",
       texto:
-        "La tecnología tiene cientos de salidas. Ayudamos a cada estudiante a descubrir cuál le gusta, qué se necesita y por dónde empezar.",
+        "La tecnología tiene cientos de salidas: te ayudamos a ver cuál es la tuya.",
       color: "coral",
     },
   ] satisfies Frente[],
