@@ -1,12 +1,11 @@
 import Caminos from "@/components/Caminos";
 import Consola from "@/components/Consola";
-import Faq from "@/components/Faq";
+import Colegios from "@/components/Colegios";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Nav from "@/components/Nav";
 import OlaDivisoria from "@/components/OlaDivisoria";
 import Olas from "@/components/Olas";
-import ParaQuien from "@/components/ParaQuien";
 import QueEs from "@/components/QueEs";
 import Ruta from "@/components/Ruta";
 import Voluntarios from "@/components/Voluntarios";
@@ -32,8 +31,7 @@ export default function Page() {
         <Caminos />
         {/* La consola: el visitante deja de leer y escribe su primera linea. */}
         <Consola />
-        <ParaQuien />
-        <Faq />
+        <Colegios />
         {/* Donde va la ola hoy: prepara la convocatoria que viene enseguida. */}
         <Ruta />
         {/* La ola anuncia el momento importante: la convocatoria. */}

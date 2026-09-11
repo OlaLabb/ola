@@ -413,41 +413,33 @@ export const consola = {
   },
 };
 
-export const paraQuien = {
-  id: "para-quien",
-  kicker: "Para quién",
-  titulo: "Esta ola llega a dos orillas.",
-  columnas: [
-    {
-      titulo: "Si eres estudiante",
-      texto:
-        "Cursas 9°, 10° u 11° en un colegio del Pacífico y sientes curiosidad por la tecnología — aunque nunca hayas escrito una línea de código. Eso es todo lo que necesitas: nosotros llevamos el resto.",
-      pie: "Pregunta en tu colegio por OLA LAB o cuéntale a tus profesores de esta iniciativa.",
-      color: "#5AC8EB",
-      cta: null,
-    },
-    {
-      titulo: "Si eres un colegio",
-      texto:
-        "Trabajas con estudiantes del territorio Pacífico y quieres que las olas de tecnología lleguen a sus aulas, sin costo. Escríbenos y coordinamos la visita: nos adaptamos a sus tiempos, su conectividad y su realidad.",
-      pie: "Esto se construye con ustedes.",
-      color: "#78DCA0",
-      cta: {
-        label: "Escribirnos como colegio",
-        subject: "Queremos OLA LAB en nuestro colegio",
-        mensaje:
-          "Hola OLA LAB, somos un colegio del Pacífico y queremos coordinar una visita.\n\nColegio:\nMunicipio:\nPersona de contacto:\nGrados interesados:",
-      },
-    },
-  ],
-};
-
-/** Las cuatro preguntas que hace todo colegio antes de decir que si. */
-export const faq = {
-  id: "faq",
-  kicker: "preguntas de colegios",
-  titulo: "Lo que todo colegio pregunta primero.",
-  items: [
+/**
+ * ---------------------------------------------------------------------------
+ * PARA COLEGIOS
+ * ---------------------------------------------------------------------------
+ * La invitacion y las preguntas que la responden, juntas. Antes estaban
+ * separadas por otra seccion: el colegio leia "escribannos" y tenia que seguir
+ * bajando para saber cuanto cuesta y que le van a pedir. Las cuatro preguntas
+ * son justamente las que se hacen ANTES de decir que si, asi que van debajo
+ * del boton, no dos pantallas mas abajo.
+ *
+ * La columna de estudiantes que acompanaba a esta vive ahora en `queEs`.
+ * ---------------------------------------------------------------------------
+ */
+export const colegios = {
+  id: "colegios",
+  kicker: "para colegios",
+  titulo: "Traemos la ola a su colegio, sin costo.",
+  sub: "Si trabajan con estudiantes del territorio Pacífico y quieren que la tecnología llegue a sus aulas, escríbannos y coordinamos la visita: nos adaptamos a sus tiempos, su conectividad y su realidad.",
+  pie: "Esto se construye con ustedes.",
+  cta: {
+    label: "Escribirnos como colegio",
+    subject: "Queremos OLA LAB en nuestro colegio",
+    mensaje:
+      "Hola OLA LAB, somos un colegio del Pacífico y queremos coordinar una visita.\n\nColegio:\nMunicipio:\nPersona de contacto:\nGrados interesados:",
+  },
+  preguntasKicker: "Lo que todo colegio pregunta primero",
+  preguntas: [
     {
       pregunta: "¿Cuánto cuesta?",
       respuesta:
@@ -456,7 +448,7 @@ export const faq = {
     {
       pregunta: "¿Necesitamos sala de computadores?",
       respuesta:
-        "No es obligatoria. Nos adaptamos a lo que haya: computadores, celulares o sesiones sin pantalla. Cuéntanos tu realidad y armamos el plan.",
+        "No es obligatoria. Nos adaptamos a lo que haya: computadores, celulares o sesiones sin pantalla. Cuéntennos su realidad y armamos el plan.",
     },
     {
       pregunta: "¿Presencial o virtual?",

@@ -10,15 +10,20 @@ export default function EncabezadoSeccion({
   kickerColor,
   titulo,
   sub,
+  tono = "oscuro",
 }: {
   numero: string;
   kicker: string;
   color: string;
-  /** Color del kicker. Por defecto va en bruma; darle color lo vuelve voz de la seccion. */
+  /** Color del kicker. Por defecto va apagado; darle color lo vuelve voz de la seccion. */
   kickerColor?: string;
   titulo?: string;
   sub?: string;
+  /** Superficie sobre la que se dibuja. En claro, `bruma` es ilegible (1.62). */
+  tono?: "oscuro" | "claro";
 }) {
+  const apagado = tono === "claro" ? "text-tinta-texto" : "text-bruma";
+
   return (
     <header className="grid gap-6 lg:grid-cols-12 lg:gap-12">
       <div className="lg:col-span-3">
@@ -28,7 +33,7 @@ export default function EncabezadoSeccion({
         </p>
         <p
           className={`mt-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.2em] ${
-            kickerColor ? "" : "text-bruma"
+            kickerColor ? "" : apagado
           }`}
           style={kickerColor ? { color: kickerColor } : undefined}
         >
