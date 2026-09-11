@@ -105,8 +105,9 @@ usando los acentos normales.
 
 ### Superficies claras
 
-Dos secciones van sobre `espuma` — **el laboratorio y colegios** — porque son los dos
-momentos en que la página pide que *hagas* algo, no que leas. Se marcan con la clase
+Tres secciones van sobre `espuma` — **el laboratorio, colegios y empresas aliadas** — porque
+son los tres momentos en que la página pide que *hagas* algo, no que leas. Empresas cierra en
+claro a propósito: el final eran tres secciones oscuras seguidas y cansaba la vista. Se marcan con la clase
 `.superficie-clara`, que corrige en un solo sitio lo que el resto de la página da por
 sentado: el texto secundario, el contorno del CTA (que sobre espuma da 1.65 de contraste no
 textual y deja de leerse como botón) y el anillo de foco.
@@ -238,7 +239,8 @@ al final quienes traen la ola.
 | 04 | Los caminos | [`Caminos`](components/Caminos.tsx) | `profundo.abismo` |
 | 05 | Colegios *(+ las preguntas)* | [`Colegios`](components/Colegios.tsx) | **`espuma`** ← claro |
 | 06 | Bitácora / ¿dónde va la ola? | [`Ruta`](components/Ruta.tsx) | `noche` |
-| — | Trae la ola *(personas + empresas)* | [`TraeLaOla`](components/TraeLaOla.tsx) | `profundo.bruma` |
+| — | Trae la ola *(personas)* | [`TraeLaOla`](components/TraeLaOla.tsx) | `profundo.bruma` |
+| — | Empresas aliadas *(la otra orilla)* | [`Empresas`](components/Empresas.tsx) | **`espuma`** ← claro |
 | — | Footer | [`Footer`](components/Footer.tsx) + [`Compartir`](components/Compartir.tsx) | `profundo.abismo` |
 
 Por qué el laboratorio va **antes** de los caminos: "¿a dónde lleva esto?" solo tiene
@@ -252,7 +254,8 @@ cuando esa sección es clara. Los fondos reales viven en la constante `FONDO` de
 Transversales: [`Nav`](components/Nav.tsx) (fijo, con `IntersectionObserver` para el enlace
 activo), [`EncabezadoSeccion`](components/EncabezadoSeccion.tsx) (el rail de número + kicker
 que da ritmo a todas las secciones; acepta `tono="claro"`),
-[`Wordmark`](components/Wordmark.tsx), [`Movimiento`](components/Movimiento.tsx)
+[`Wordmark`](components/Wordmark.tsx) (con `tono="claro"` para fondo claro: sobre `espuma` el
+wordmark normal es invisible), [`Movimiento`](components/Movimiento.tsx)
 (`LazyMotion` de Framer Motion — dentro se usa `m.*`, nunca `motion.*`).
 
 El **nav** son cuatro destinos: tres anclas (Las olas · Pruébalo · Colegios) y el CTA "Trae

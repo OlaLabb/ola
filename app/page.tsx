@@ -1,6 +1,7 @@
 import Caminos from "@/components/Caminos";
 import Colegios from "@/components/Colegios";
 import Consola from "@/components/Consola";
+import Empresas from "@/components/Empresas";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Nav from "@/components/Nav";
@@ -21,10 +22,11 @@ import TraeLaOla from "@/components/TraeLaOla";
  * El laboratorio subio por delante de los caminos: la pregunta "¿a donde
  * lleva esto?" solo tiene sentido despues de haber hecho algo, no antes.
  *
- * Las dos secciones sobre `espuma` (el laboratorio y colegios) son los dos
- * momentos en que la pagina pide que HAGAS algo. Cada cruce oscuro/claro se
- * cose con una ola; el trazo de su cresta se dibuja sobre la seccion de
- * arriba, asi que se invierte cuando esa es clara.
+ * Las tres secciones sobre `espuma` (el laboratorio, colegios y empresas) son
+ * los tres momentos en que la pagina pide que HAGAS algo. Empresas cierra en
+ * claro a proposito: el final eran tres secciones oscuras seguidas y cansaba.
+ * Cada cruce oscuro/claro se cose con una ola; el trazo de su cresta se dibuja
+ * sobre la seccion de arriba, asi que se invierte cuando esa es clara.
  * ---------------------------------------------------------------------------
  */
 
@@ -79,9 +81,17 @@ export default function Page() {
         <Ruta />
         <OlaDivisoria arriba={FONDO.noche} abajo={FONDO.bruma} />
         <TraeLaOla />
+
+        {/* La otra orilla, en claro: rompe la carrera oscura del cierre. */}
+        <OlaDivisoria arriba={FONDO.bruma} abajo={FONDO.espuma} />
+        <Empresas />
       </main>
 
-      <OlaDivisoria arriba={FONDO.bruma} abajo={FONDO.abismo} />
+      <OlaDivisoria
+        arriba={FONDO.espuma}
+        abajo={FONDO.abismo}
+        trazo="oscuro"
+      />
       <Footer />
     </>
   );

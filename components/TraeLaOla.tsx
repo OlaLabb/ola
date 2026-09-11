@@ -2,10 +2,11 @@ import { mailto, traeLaOla } from "@/content/site";
 
 /**
  * TRAE LA OLA — el objetivo numero uno de la pagina.
- * Es la unica seccion centrada: despues de una pagina entera alineada a la
- * izquierda, el cambio de eje la convierte en un destino, no en un parrafo mas.
+ * Abre el tramo de cierre, el unico centrado de la pagina: despues de todo lo
+ * anterior alineado a la izquierda, el cambio de eje lo convierte en destino.
  *
- * Dos orillas: primero las personas, luego las empresas. Las dos traen ola.
+ * Es la primera de las dos orillas: las personas. La segunda —las empresas—
+ * salio a su propia seccion clara, justo debajo: ver components/Empresas.tsx.
  */
 export default function TraeLaOla() {
   return (
@@ -49,28 +50,6 @@ export default function TraeLaOla() {
             className="boton-accion px-8 py-4 text-base"
           >
             {traeLaOla.cta.label}
-          </a>
-        </div>
-
-        {/* La otra orilla de la convocatoria: las empresas tambien traen ola. */}
-        <div className="mx-auto mt-14 max-w-[46rem] rounded-3xl border border-white/[0.1] bg-white/[0.03] p-7 sm:p-9">
-          <p className="kicker justify-center text-oceano">
-            {traeLaOla.empresas.kicker}
-          </p>
-          <h3 className="mt-5 text-pretty text-[clamp(1.2rem,2.2vw,1.6rem)] font-semibold leading-tight text-espuma">
-            {traeLaOla.empresas.titulo}
-          </h3>
-          <p className="cuerpo mx-auto mt-4 max-w-[52ch] text-pretty text-bruma">
-            {traeLaOla.empresas.texto}
-          </p>
-          <a
-            href={mailto(
-              traeLaOla.empresas.cta.subject,
-              traeLaOla.empresas.cta.body,
-            )}
-            className="boton-linea mt-7"
-          >
-            {traeLaOla.empresas.cta.label}
           </a>
         </div>
 

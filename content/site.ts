@@ -545,7 +545,8 @@ export const ruta = {
  * lo llamamos nosotros por dentro; "trae la ola" es como se dice en la marca y
  * es, ademas, una invitacion en vez de una categoria.
  *
- * Dos orillas: las personas y las empresas. Las dos traen ola.
+ * Es la primera de las dos orillas: las personas. La segunda —las empresas—
+ * vive en su propia seccion, `empresas`, justo despues y sobre fondo claro.
  * ---------------------------------------------------------------------------
  */
 export const traeLaOla = {
@@ -572,24 +573,6 @@ export const traeLaOla = {
       "¡Gracias!",
     ].join("\n"),
   },
-  /** Segunda orilla de la convocatoria: las empresas tambien traen ola. */
-  empresas: {
-    kicker: "la otra orilla",
-    titulo: "¿Tienes una empresa? Trae la ola con nosotros.",
-    texto:
-      "Equipos, conectividad, espacios o patrocinio: lo que su empresa pueda aportar se convierte en horas de tecnología para estudiantes del Pacífico.",
-    cta: {
-      label: "Ser empresa aliada",
-      subject: "Queremos ser empresa aliada de OLA LAB",
-      body: [
-        "Hola OLA LAB, queremos sumarnos como empresa aliada.",
-        "",
-        "Empresa:",
-        "Persona de contacto:",
-        "Cómo podríamos aportar (equipos, conectividad, patrocinio, otro):",
-      ].join("\n"),
-    },
-  },
   nota: "También recibimos recomendaciones: si conoces a alguien que debería estar aquí, escríbenos con su nombre.",
   notaCta: {
     label: "Recomendar a alguien",
@@ -600,6 +583,37 @@ export const traeLaOla = {
       "Nombre de la persona:",
       "Su área:",
       "Cómo contactarla:",
+    ].join("\n"),
+  },
+};
+
+/**
+ * ---------------------------------------------------------------------------
+ * EMPRESAS ALIADAS — la otra orilla
+ * ---------------------------------------------------------------------------
+ * Salio de `traeLaOla` para tener seccion propia sobre `espuma`. Dos razones:
+ * el cierre de la pagina eran tres secciones oscuras seguidas, y el claro es
+ * justo lo que esta pagina usa para decir "aqui te toca hacer algo".
+ *
+ * El texto es el mismo que tenia cuando era una tarjeta: se mudo, no se
+ * reescribio.
+ * ---------------------------------------------------------------------------
+ */
+export const empresas = {
+  id: "empresas",
+  kicker: "la otra orilla",
+  titulo: "¿Tienes una empresa? Trae la ola con nosotros.",
+  texto:
+    "Equipos, conectividad, espacios o patrocinio: lo que su empresa pueda aportar se convierte en horas de tecnología para estudiantes del Pacífico.",
+  cta: {
+    label: "Ser empresa aliada",
+    subject: "Queremos ser empresa aliada de OLA LAB",
+    body: [
+      "Hola OLA LAB, queremos sumarnos como empresa aliada.",
+      "",
+      "Empresa:",
+      "Persona de contacto:",
+      "Cómo podríamos aportar (equipos, conectividad, patrocinio, otro):",
     ].join("\n"),
   },
 };
