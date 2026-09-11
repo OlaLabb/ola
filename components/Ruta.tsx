@@ -13,7 +13,7 @@ export default function Ruta() {
 
       <div className="contenedor relative">
         <EncabezadoSeccion
-          numero="08"
+          numero="06"
           kicker={ruta.kicker}
           color="#5AC8EB"
           titulo={ruta.titulo}

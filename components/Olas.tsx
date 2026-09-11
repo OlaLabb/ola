@@ -34,7 +34,7 @@ export default function Olas() {
 
       <div className="contenedor relative">
         <EncabezadoSeccion
-          numero="03"
+          numero="02"
           kicker={olas.kicker}
           kickerColor="#5AC8EB"
           color="#5AC8EB"

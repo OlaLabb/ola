@@ -1,6 +1,6 @@
 import Caminos from "@/components/Caminos";
-import Consola from "@/components/Consola";
 import Colegios from "@/components/Colegios";
+import Consola from "@/components/Consola";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Nav from "@/components/Nav";
@@ -9,6 +9,32 @@ import Olas from "@/components/Olas";
 import QueEs from "@/components/QueEs";
 import Ruta from "@/components/Ruta";
 import TraeLaOla from "@/components/TraeLaOla";
+
+/**
+ * ---------------------------------------------------------------------------
+ * EL ORDEN DE LA PAGINA
+ * ---------------------------------------------------------------------------
+ * Primero el viaje completo del estudiante, seguido y sin interrupciones:
+ * el gancho, las olas, probarlo con las manos y a donde lleva. Solo despues
+ * viene el tramo para colegios, y al final quienes traen la ola.
+ *
+ * El laboratorio subio por delante de los caminos: la pregunta "¿a donde
+ * lleva esto?" solo tiene sentido despues de haber hecho algo, no antes.
+ *
+ * Las dos secciones sobre `espuma` (el laboratorio y colegios) son los dos
+ * momentos en que la pagina pide que HAGAS algo. Cada cruce oscuro/claro se
+ * cose con una ola; el trazo de su cresta se dibuja sobre la seccion de
+ * arriba, asi que se invierte cuando esa es clara.
+ * ---------------------------------------------------------------------------
+ */
+
+/** Los fondos reales de cada seccion, para que las divisorias no se adivinen. */
+const FONDO = {
+  noche: "#0A0E12",
+  abismo: "#07202B",
+  espuma: "#F2F7F5",
+  bruma: "#12303B",
+};
 
 export default function Page() {
   return (
@@ -24,22 +50,38 @@ export default function Page() {
       <Nav />
 
       <main id="contenido">
+        {/* --- El viaje del estudiante ------------------------------------ */}
         <Hero />
         <QueEs />
-        {/* Las olas: el programa contado como marea, antes de los caminos. */}
         <Olas />
-        <Caminos />
-        {/* La consola: el visitante deja de leer y escribe su primera linea. */}
+
+        <OlaDivisoria arriba={FONDO.abismo} abajo={FONDO.espuma} />
+        {/* Aqui deja de leer y escribe su primera linea. */}
         <Consola />
+        <OlaDivisoria
+          arriba={FONDO.espuma}
+          abajo={FONDO.abismo}
+          trazo="oscuro"
+        />
+
+        <Caminos />
+
+        {/* --- La otra orilla: los colegios ------------------------------- */}
+        <OlaDivisoria arriba={FONDO.abismo} abajo={FONDO.espuma} />
         <Colegios />
-        {/* Donde va la ola hoy: prepara la convocatoria que viene enseguida. */}
+        <OlaDivisoria
+          arriba={FONDO.espuma}
+          abajo={FONDO.noche}
+          trazo="oscuro"
+        />
+
+        {/* --- Donde va la ola hoy, y quienes la traen -------------------- */}
         <Ruta />
-        {/* La ola anuncia el momento importante: la convocatoria. */}
-        <OlaDivisoria arriba="#0A0E12" abajo="#12303B" />
+        <OlaDivisoria arriba={FONDO.noche} abajo={FONDO.bruma} />
         <TraeLaOla />
       </main>
 
-      <OlaDivisoria arriba="#12303B" abajo="#07202B" />
+      <OlaDivisoria arriba={FONDO.bruma} abajo={FONDO.abismo} />
       <Footer />
     </>
   );
