@@ -72,18 +72,25 @@ export const seo = {
   ],
 };
 
+/**
+ * El nav son cuatro destinos, no cinco enlaces y un boton que repite uno de
+ * ellos. Las tres anclas son las tres paradas del viaje del estudiante (que
+ * hay, pruebalo, y la puerta para su colegio); el CTA es la cuarta y va
+ * aparte porque es la unica que pide algo.
+ *
+ * "Que es" y "¿Donde vamos?" salieron: la primera esta a un scroll del hero y
+ * la segunda es bitacora, no destino.
+ */
 export const nav = {
-  cta: "Quiero ser voluntario",
+  cta: "Trae la ola",
   ctaHref: "#trae-la-ola",
   abrirMenu: "Abrir menú",
   cerrarMenu: "Cerrar menú",
   /** Anclas del menu: cada `href` es el id real de su seccion. */
   enlaces: [
-    { label: "Qué es", href: "#que-es" },
     { label: "Las olas", href: "#olas" },
     { label: "Pruébalo", href: "#consola" },
-    { label: "Colegios", href: "#para-quien" },
-    { label: "¿Dónde vamos?", href: "#ruta" },
+    { label: "Colegios", href: "#colegios" },
   ],
 };
 
