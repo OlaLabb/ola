@@ -94,8 +94,14 @@ export const hero = {
   /** Fragmento del titulo que se pinta en cian. Debe existir dentro de `titulo`. */
   resaltar: "la distancia",
   sub: "Llevamos programación, inteligencia artificial e innovación a estudiantes de 9°, 10° y 11° en los colegios del territorio Pacífico.",
-  ctaPrimario: { label: "Compartir mi conocimiento", href: "#trae-la-ola" },
-  ctaSecundario: { label: "Conocer la iniciativa", href: "#que-es" },
+  /**
+   * El CTA principal ya no manda al voluntariado: manda al laboratorio. Quien
+   * llega aqui es, sobre todo, un estudiante, y la forma mas corta de que
+   * entienda que es esto es que ejecute una linea de codigo suya. El scroll
+   * suave lo pone `html { scroll-behavior: smooth }` en globals.css.
+   */
+  ctaPrimario: { label: "Pruébalo", href: "#consola" },
+  ctaSecundario: { label: "Soy colegio", href: "#colegios" },
   codigo: "// pacifico.conectar()",
   /** Ficha del laboratorio: acompaña al hero en pantallas grandes. */
   ficha: [
