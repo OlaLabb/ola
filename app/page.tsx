@@ -4,6 +4,7 @@ import Frentes from "@/components/Frentes";
 import Hero from "@/components/Hero";
 import Nav from "@/components/Nav";
 import OlaDivisoria from "@/components/OlaDivisoria";
+import Olas from "@/components/Olas";
 import ParaQuien from "@/components/ParaQuien";
 import QueEs from "@/components/QueEs";
 import Voluntarios from "@/components/Voluntarios";
@@ -25,6 +26,8 @@ export default function Page() {
         <Hero />
         <QueEs />
         <Frentes />
+        {/* Las olas: el programa contado como marea, antes de los caminos. */}
+        <Olas />
         <Caminos />
         <ParaQuien />
         {/* La ola anuncia el momento importante: la convocatoria. */}

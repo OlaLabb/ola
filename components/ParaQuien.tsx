@@ -12,7 +12,7 @@ export default function ParaQuien() {
 
       <div className="contenedor relative">
         <EncabezadoSeccion
-          numero="04"
+          numero="05"
           kicker={paraQuien.kicker}
           color="#F2A0C0"
           titulo={paraQuien.titulo}

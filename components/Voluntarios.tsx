@@ -27,7 +27,12 @@ export default function Voluntarios() {
           {voluntarios.titulo}
         </h2>
 
-        <p className="lead mx-auto mt-7 max-w-[58ch] text-pretty text-espuma/90">
+        {/* La frase que los ubica en la marca: sin ellos no hay ola. */}
+        <p className="mx-auto mt-6 max-w-[34ch] text-pretty text-base font-semibold text-oceano sm:text-lg">
+          {voluntarios.frase}
+        </p>
+
+        <p className="lead mx-auto mt-6 max-w-[58ch] text-pretty text-espuma/90">
           {voluntarios.texto}
         </p>
 

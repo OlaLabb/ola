@@ -337,3 +337,95 @@
     transform: none;
   }
 }
+
+/* --------------------------------------------------------------------------
+   LAS OLAS
+   Cada tarjeta lleva su propia olita: un SVG con el mismo trazo repetido
+   varias veces, que se desplaza exactamente un periodo (60 unidades del
+   viewBox) para que el bucle sea invisible — el mismo truco del mar del hero,
+   en miniatura.
+
+   En reposo la olita deriva despacio (esta viva, pero no pide atencion). Al
+   pasar el cursor o al enfocar la tarjeta con el teclado, la marea se acelera
+   y aparece el entregable. Acelerar no produce salto visible porque el trazo
+   es periodico: cualquier fase se ve igual.
+   -------------------------------------------------------------------------- */
+@keyframes olita-deriva {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-60px);
+  }
+}
+
+.olita-trazo {
+  will-change: transform;
+  animation: olita-deriva var(--deriva, 20s) linear infinite;
+}
+
+.ola-tarjeta {
+  transition: border-color 250ms ease, transform 250ms ease;
+}
+
+/* El resplandor del color de la ola: apagado hasta que la tarjeta despierta. */
+.ola-brillo {
+  opacity: 0;
+  transition: opacity 450ms ease;
+}
+
+.ola-entregable {
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+/* Tres disparadores, un solo efecto: cursor, foco de teclado y foco interno.
+   Asi la tarjeta responde igual con mouse y con Tab. */
+.ola-tarjeta:hover,
+.ola-tarjeta:focus-visible,
+.ola-tarjeta:focus-within {
+  border-color: var(--ola-borde);
+  transform: translateY(-2px);
+}
+
+.ola-tarjeta:hover .ola-brillo,
+.ola-tarjeta:focus-visible .ola-brillo,
+.ola-tarjeta:focus-within .ola-brillo {
+  opacity: 1;
+}
+
+.ola-tarjeta:hover .olita-trazo,
+.ola-tarjeta:focus-visible .olita-trazo,
+.ola-tarjeta:focus-within .olita-trazo {
+  --deriva: 3.4s;
+}
+
+/* El entregable solo se esconde donde existe un cursor que lo pueda revelar.
+   En pantallas tactiles no hay hover: ahi se muestra siempre. */
+@media (hover: hover) and (pointer: fine) {
+  .ola-tarjeta .ola-entregable {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+
+  .ola-tarjeta:hover .ola-entregable,
+  .ola-tarjeta:focus-visible .ola-entregable,
+  .ola-tarjeta:focus-within .ola-entregable {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Con movimiento reducido la olita se queda quieta y la tarjeta no se levanta:
+   el contenido sigue completo, solo desaparece el movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  .olita-trazo {
+    animation: none !important;
+    transform: none;
+  }
+
+  .ola-tarjeta:hover,
+  .ola-tarjeta:focus-visible,
+  .ola-tarjeta:focus-within {
+    transform: none;
+  }
+}

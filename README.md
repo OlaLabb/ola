@@ -32,8 +32,9 @@ componentes para cambiar la página:
 
 | Qué quieres cambiar | Dónde |
 | --- | --- |
-| Titulares, párrafos, kickers | las constantes `hero`, `queEs`, `frentes`, `caminos`, `paraQuien`, `voluntarios`, `footer` |
+| Titulares, párrafos, kickers | las constantes `hero`, `queEs`, `frentes`, `olas`, `caminos`, `paraQuien`, `voluntarios`, `footer` |
 | Los 4 frentes de trabajo | `frentes.items` (cada uno con su `color`: `oceano`, `manglar`, `atardecer`, `coral`) |
+| Las olas del programa | `olas.items` (nombre, `promesa`, `entregable` y su color; cada tema del programa es **una ola**, nunca un "taller" ni un "módulo") |
 | Los caminos de la tecnología | `caminos.items` (nombre, emoji, color, frase y "un día típico") |
 | Correo de contacto | `EMAIL` |
 | Asuntos y cuerpos de los `mailto:` | `voluntarios.cta`, `voluntarios.notaCta`, `paraQuien.columnas[].cta` |
@@ -174,6 +175,9 @@ reposo), `amplitud`, `periodos` (más periodos = mar más lejano), `filo`
 - `prefers-reduced-motion` respetado en todo: el mar se congela, no hay parallax ni entradas.
 - Navegación por teclado completa; los caminos usan el patrón ARIA de tabs con flechas,
   Inicio/Fin y foco visible.
+- Las tarjetas de las olas son tabulables: lo que el cursor revela (el entregable), el
+  teclado también. En pantallas táctiles —donde no hay hover— se muestra siempre, y con
+  `prefers-reduced-motion` la olita de cada tarjeta se queda quieta.
 - Sin imágenes de mapa de bits en toda la página: el mar, las divisorias y el
   icono son SVG; la imagen de redes se genera en build.
 - Framer Motion se carga con `LazyMotion` (solo el subconjunto necesario) pensando en

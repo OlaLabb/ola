@@ -101,7 +101,7 @@ export const queEs = {
   kicker: "¿Qué es ola lab?",
   parrafos: [
     "En las ciudades, un estudiante curioso encuentra cursos, mentores y ejemplos a la vuelta de la esquina. En muchos rincones del Pacífico, ese mismo talento crece sin que nadie le muestre que la tecnología también es para él.",
-    "OLA LAB existe para cerrar esa distancia: un laboratorio itinerante de tecnología, inteligencia artificial e innovación que llega a los colegios del territorio con talleres, mentores y una guía de estudio construida por profesionales que dominan su área.",
+    "OLA LAB existe para cerrar esa distancia: un laboratorio itinerante de tecnología, inteligencia artificial e innovación que llega a los colegios del territorio ola por ola, con mentores y una guía de estudio construida por profesionales que dominan su área.",
   ],
   destacado:
     "El conocimiento que no se comparte, se desperdicia. Nosotros lo vamos a compartir donde más se necesita.",
@@ -121,9 +121,9 @@ export const frentes = {
   titulo: "Cuatro frentes, una sola idea: acercar lo que estaba lejos.",
   items: [
     {
-      titulo: "Talleres de tecnología e IA en tu colegio",
+      titulo: "Olas de tecnología e IA en tu colegio",
       texto:
-        "Llevamos sesiones prácticas de programación, inteligencia artificial e innovación a colegios del Pacífico, en un lenguaje que cualquier estudiante entiende desde el primer minuto.",
+        "Cada ola es una sesión práctica de programación, inteligencia artificial o innovación que llega a los colegios del Pacífico, en un lenguaje que cualquier estudiante entiende desde el primer minuto.",
       color: "oceano",
     },
     {
@@ -145,6 +145,98 @@ export const frentes = {
       color: "coral",
     },
   ] satisfies Frente[],
+};
+
+/**
+ * ---------------------------------------------------------------------------
+ * LAS OLAS — el corazon de la marca
+ * ---------------------------------------------------------------------------
+ * Cada tema del programa es UNA OLA: llega al territorio, envuelve al
+ * estudiante y se va dejando algo construido. Nadie "toma un curso" ni "ve un
+ * modulo": se monta en la ola y la surfea. Ese es el lenguaje de toda la
+ * pagina.
+ *
+ * Sobre los colores: cada ola tiene el suyo y no se repite, porque el color es
+ * lo que la hace reconocible antes de leer el nombre. El de la Ola de IA
+ * (#FF8A73) es un coral de arrecife: el token `coral` de la paleta (#F2A0C0)
+ * quedo para la Ola de Diseno, y `atardecer` sigue reservado para los CTA.
+ * ---------------------------------------------------------------------------
+ */
+export type Ola = {
+  id: string;
+  /** Nombre completo, tal como se dice en voz alta. */
+  nombre: string;
+  /** La promesa: que te pasa mientras la surfeas. */
+  promesa: string;
+  /** Lo que te llevas construido al salir del agua. Se revela al pasar el cursor. */
+  entregable: string;
+  /** Color en hex: tine la olita, el nombre y el resplandor de la tarjeta. */
+  color: string;
+};
+
+export const olas = {
+  id: "olas",
+  kicker: "// nuestro programa",
+  titulo: "Aquí no hay clases. Hay olas.",
+  intro:
+    "Cada tema que llevamos al territorio es una ola: llega, te envuelve y te deja algo construido. No las dictamos — las surfeamos juntos. Estas son las olas de nuestra marea:",
+  /** Linea que se revela en cada tarjeta, antes del entregable. */
+  prefijoEntregable: "Al surfearla te llevas:",
+  cierre:
+    "Cada ola que surfeas te deja una insignia. Y cuando completas la marea… ya no eres el mismo. 🌊",
+  items: [
+    {
+      id: "programacion",
+      nombre: "La Ola de Programación",
+      promesa: "Aprende a hablarle a las máquinas — y a que te obedezcan.",
+      entregable: "tu primer programa funcionando",
+      color: "#78DCA0",
+    },
+    {
+      id: "ia",
+      nombre: "La Ola de IA",
+      promesa:
+        "Descubre cómo se le enseña a pensar a una máquina (y por qué tú mandas).",
+      entregable: "tu primer asistente inteligente",
+      color: "#FF8A73",
+    },
+    {
+      id: "innovacion",
+      nombre: "La Ola de Innovación",
+      promesa: "Convierte los problemas de tu territorio en ideas que valen.",
+      entregable: "una idea de tu territorio convertida en proyecto",
+      color: "#5AC8EB",
+    },
+    {
+      id: "datos",
+      nombre: "La Ola de Datos",
+      promesa: "Lee las historias escondidas en los números.",
+      entregable: "un análisis real con datos de tu región",
+      color: "#7FD8D8",
+    },
+    {
+      id: "diseno",
+      nombre: "La Ola de Diseño",
+      promesa: "Crea tecnología que la gente ame usar.",
+      entregable: "el diseño de tu primera app",
+      color: "#F2A0C0",
+    },
+    {
+      id: "automatizacion",
+      nombre: "La Ola de Automatización",
+      promesa:
+        "Pon a los robots a hacer lo aburrido, para que tú hagas lo importante.",
+      entregable: "un robot que trabaja por ti",
+      color: "#9B8CFF",
+    },
+    {
+      id: "seguridad",
+      nombre: "La Ola de Seguridad",
+      promesa: "Aprende a proteger lo que el mundo digital quiere robar.",
+      entregable: "el escudo digital de tu familia",
+      color: "#5A8CEB",
+    },
+  ] satisfies Ola[],
 };
 
 export type Camino = {
@@ -236,7 +328,7 @@ export const paraQuien = {
     {
       titulo: "Si eres un colegio",
       texto:
-        "Trabajas con estudiantes del territorio Pacífico y quieres llevarles talleres de tecnología sin costo. Escríbenos y coordinamos la visita: nos adaptamos a sus tiempos, su conectividad y su realidad.",
+        "Trabajas con estudiantes del territorio Pacífico y quieres que las olas de tecnología lleguen a sus aulas, sin costo. Escríbenos y coordinamos la visita: nos adaptamos a sus tiempos, su conectividad y su realidad.",
       pie: "Esto se construye con ustedes.",
       color: "#78DCA0",
       cta: {
@@ -253,8 +345,10 @@ export const voluntarios = {
   id: "voluntarios",
   kicker: "Convocatoria abierta",
   titulo: "¿Dominas tu área? El Pacífico te necesita.",
+  /** Frase corta que conecta el voluntariado con el lenguaje de olas. */
+  frase: "Los voluntarios son los que traen la ola.",
   texto:
-    "Buscamos profesionales voluntarios — de desarrollo, datos, diseño, IA, ciberseguridad o cualquier frente tech — para construir la guía de estudio y dictar charlas y talleres en lenguaje claro.",
+    "Buscamos profesionales voluntarios — de desarrollo, datos, diseño, IA, ciberseguridad o cualquier frente tech — para construir la guía de estudio y traer las olas al territorio en lenguaje claro.",
   destacado:
     "Lo que para ti es un martes normal, para un estudiante puede ser el día que le cambió el rumbo.",
   cta: {

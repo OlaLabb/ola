@@ -7,12 +7,15 @@ export default function EncabezadoSeccion({
   numero,
   kicker,
   color,
+  kickerColor,
   titulo,
   sub,
 }: {
   numero: string;
   kicker: string;
   color: string;
+  /** Color del kicker. Por defecto va en bruma; darle color lo vuelve voz de la seccion. */
+  kickerColor?: string;
   titulo?: string;
   sub?: string;
 }) {
@@ -23,7 +26,12 @@ export default function EncabezadoSeccion({
         <p className="font-mono text-xs tracking-[0.18em]" style={{ color }}>
           {numero}
         </p>
-        <p className="mt-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-bruma">
+        <p
+          className={`mt-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.2em] ${
+            kickerColor ? "" : "text-bruma"
+          }`}
+          style={kickerColor ? { color: kickerColor } : undefined}
+        >
           {kicker}
         </p>
       </div>
