@@ -429,3 +429,44 @@
     transform: none;
   }
 }
+
+/* --------------------------------------------------------------------------
+   MENU MOVIL
+   El panel entra desde la derecha y el fondo se funde detras. Son las dos
+   unicas animaciones del nav, y con movimiento reducido ambas desaparecen:
+   el menu simplemente aparece.
+   -------------------------------------------------------------------------- */
+@keyframes nav-fondo-entra {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes nav-panel-entra {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.nav-fondo {
+  animation: nav-fondo-entra 220ms ease-out;
+}
+
+.nav-panel {
+  will-change: transform;
+  animation: nav-panel-entra 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-fondo,
+  .nav-panel {
+    animation: none !important;
+    transform: none;
+  }
+}

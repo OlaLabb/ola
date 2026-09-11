@@ -75,6 +75,16 @@ export const seo = {
 export const nav = {
   cta: "Quiero ser voluntario",
   ctaHref: "#voluntarios",
+  abrirMenu: "Abrir menú",
+  cerrarMenu: "Cerrar menú",
+  /** Anclas del menu: cada `href` es el id real de su seccion. */
+  enlaces: [
+    { label: "Qué es", href: "#que-es" },
+    { label: "Las olas", href: "#olas" },
+    { label: "Pruébalo", href: "#consola" },
+    { label: "Colegios", href: "#para-quien" },
+    { label: "¿Dónde vamos?", href: "#ruta" },
+  ],
 };
 
 export const hero = {
