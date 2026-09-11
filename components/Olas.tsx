@@ -50,8 +50,12 @@ export default function Olas() {
               // Tabulable: es la unica forma de que el entregable tambien se
               // revele navegando con teclado.
               tabIndex={0}
+              data-revelar
               style={
                 {
+                  // El escalonado: cada tarjeta entra un pelo despues que la
+                  // anterior, en vez de las siete de golpe.
+                  "--revelar-orden": i,
                   "--ola-color": ola.color,
                   // Alfas en hex para no depender de color-mix(): esta pagina
                   // tambien se ve en navegadores viejos de gama baja.

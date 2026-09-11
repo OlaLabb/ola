@@ -190,6 +190,16 @@ Guapi. Si suena a folleto, está mal.
    baja con mala conexión: cada kB cuesta.
 5. **`prefers-reduced-motion` se respeta siempre.** Toda animación nueva necesita su
    apagado.
+
+   El **revelado al entrar en pantalla** ya está resuelto: pon `data-revelar` en el elemento
+   y ya. Un único `IntersectionObserver` —en JS plano dentro de `app/layout.tsx`, no en un
+   componente, para que no dependa de la hidratación ni sume al bundle— revela cada elemento
+   una sola vez. Para escalonar hermanos, `style={{ "--revelar-orden": i }}`.
+
+   El estado escondido vive detrás de la clase `js-revelar`, que ese mismo script solo pone
+   si hay soporte y **no** hay `prefers-reduced-motion`: sin JS o con menos movimiento pedido,
+   no se esconde nada. El desplazamiento usa `translate`, nunca `transform`, para no pisar los
+   `transform` de hover que ya tienen las tarjetas.
 6. **Nada de imágenes de mapa de bits.** Mar, divisorias e íconos son SVG; la imagen de
    redes es el único PNG.
 7. Los comentarios del código están en español y sin tildes (convención del repo). Mantenla.
@@ -210,7 +220,8 @@ app/
   layout.tsx            Fuentes, metadata/SEO, Open Graph, JSON-LD (Organization)
   page.tsx              El orden de las secciones de la página. Nada más.
   globals.css           Escala tipográfica, clases .contenedor/.display/.boton-*,
-                        y TODAS las animaciones CSS (mar, olitas, nav móvil)
+                        y TODAS las animaciones CSS (mar, olitas, nav móvil,
+                        revelado al hacer scroll y apertura del FAQ)
   icon.svg              Favicon: la doble ola del logo
   opengraph-image.png   Imagen para compartir (+ .alt.txt con su texto alternativo)
   sitemap.ts robots.ts  Generados desde SITE_URL

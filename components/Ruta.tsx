@@ -23,10 +23,15 @@ export default function Ruta() {
         <div className="mt-12 grid lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-9 lg:col-start-4">
             <ol className="relative space-y-4 border-l border-white/[0.12] pl-7 sm:pl-9">
-              {ruta.pasos.map((paso) => {
+              {ruta.pasos.map((paso, i) => {
                 const enCurso = paso.estado === "encurso";
                 return (
-                  <li key={paso.titulo} className="relative">
+                  <li
+                    key={paso.titulo}
+                    data-revelar
+                    style={{ "--revelar-orden": i } as React.CSSProperties}
+                    className="relative"
+                  >
                     {/* El punto que se monta sobre la linea de tiempo. */}
                     <span
                       aria-hidden="true"

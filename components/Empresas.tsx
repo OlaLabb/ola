@@ -20,7 +20,7 @@ export default function Empresas() {
       id={empresas.id}
       className="superficie-clara relative py-20 sm:py-28"
     >
-      <div className="contenedor relative text-center">
+      <div data-revelar className="contenedor relative text-center">
         <p className="kicker justify-center text-tinta-oceano">
           {empresas.kicker}
         </p>

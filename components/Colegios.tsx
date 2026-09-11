@@ -13,7 +13,9 @@ import { colegios, whatsapp } from "@/content/site";
  * del sitio es noche.
  *
  * `details/summary` nativo: abre y cierra sin JavaScript, el buscador lee las
- * respuestas y el teclado ya funciona por defecto.
+ * respuestas y el teclado ya funciona por defecto. La apertura se suaviza solo
+ * con CSS (ver "EL FAQ QUE ABRE" en app/globals.css): sigue sin llevar ni una
+ * linea de JS.
  * ------------------------------------------------------------------------- */
 
 export default function Colegios() {
@@ -45,7 +47,7 @@ export default function Colegios() {
               {colegios.cta.label}
             </a>
 
-            <div className="mt-16">
+            <div data-revelar className="mt-16">
               <p className="kicker text-tinta-texto">
                 {colegios.preguntasKicker}
               </p>
@@ -66,9 +68,15 @@ export default function Colegios() {
                       </span>
                     </summary>
 
-                    <p className="cuerpo max-w-[62ch] pb-7 text-pretty text-tinta-texto">
-                      {item.respuesta}
-                    </p>
+                    {/* La rejilla de una fila es lo que permite animar hasta
+                        el alto real de la respuesta, sin fijarlo a mano. */}
+                    <div className="faq-cuerpo">
+                      <div>
+                        <p className="cuerpo max-w-[62ch] pb-7 text-pretty text-tinta-texto">
+                          {item.respuesta}
+                        </p>
+                      </div>
+                    </div>
                   </details>
                 ))}
               </div>

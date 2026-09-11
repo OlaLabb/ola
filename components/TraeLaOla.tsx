@@ -21,7 +21,7 @@ export default function TraeLaOla() {
         className="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(50%_60%_at_50%_0%,rgba(255,178,94,0.13),transparent_70%)]"
       />
 
-      <div className="contenedor relative text-center">
+      <div data-revelar className="contenedor relative text-center">
         <p className="kicker justify-center text-atardecer">
           {traeLaOla.kicker}
         </p>

@@ -76,7 +76,11 @@ export default function QueEs() {
             {queEs.frentes.map((frente, i) => {
               const hex = COLORES[frente.color];
               return (
-                <li key={frente.titulo}>
+                <li
+                  key={frente.titulo}
+                  data-revelar
+                  style={{ "--revelar-orden": i } as React.CSSProperties}
+                >
                   <div
                     aria-hidden="true"
                     className="h-[3px] w-9 rounded-full"

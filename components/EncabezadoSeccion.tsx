@@ -25,7 +25,9 @@ export default function EncabezadoSeccion({
   const apagado = tono === "claro" ? "text-tinta-texto" : "text-bruma";
 
   return (
-    <header className="grid gap-6 lg:grid-cols-12 lg:gap-12">
+    // Un solo atributo aqui revela el encabezado de las seis secciones que
+    // lo usan. El hero no lo usa, asi que el mar se queda fuera.
+    <header data-revelar className="grid gap-6 lg:grid-cols-12 lg:gap-12">
       <div className="lg:col-span-3">
         <div className="mb-4 h-px w-8" style={{ background: color }} />
         <p className="font-mono text-xs tracking-[0.18em]" style={{ color }}>

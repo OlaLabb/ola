@@ -550,3 +550,91 @@
     transform: none;
   }
 }
+
+/* --------------------------------------------------------------------------
+   REVELADO AL ENTRAR EN PANTALLA
+   --------------------------------------------------------------------------
+   El estado escondido SOLO existe si la clase `js-revelar` esta en el <html>,
+   y esa clase la pone un script del <body> unicamente cuando hay soporte de
+   IntersectionObserver y el visitante NO pidio menos movimiento. Sin JS, con
+   un navegador viejo o con `prefers-reduced-motion`, nada se esconde nunca:
+   la pagina se ve completa, que es como tiene que fallar.
+
+   Solo se animan `opacity` y el desplazamiento — las dos que el navegador
+   resuelve en el compositor, sin recalcular diseno. Nada de `will-change`: en
+   gama baja promover veinte capas cuesta mas memoria de la que ahorra.
+
+   El desplazamiento usa `translate`, la propiedad suelta, y NO `transform`.
+   No es capricho: `.ola-tarjeta:hover` ya usa `transform` para levantarse, y
+   como el selector de aqui pesa mas, un `transform` en el revelado le habria
+   ganado y la tarjeta se habria quedado sin hover. `translate` se compone con
+   `transform` en vez de pisarlo, asi que las dos cosas conviven. En un
+   navegador viejo que no la conozca, la tarjeta solo aparece sin deslizarse.
+   ------------------------------------------------------------------------- */
+.js-revelar [data-revelar] {
+  opacity: 0;
+  translate: 0 1.25rem;
+  transition:
+    opacity 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    translate 520ms cubic-bezier(0.22, 1, 0.36, 1);
+  /* Escalonado de tarjetas hermanas: el indice lo pone el componente. */
+  transition-delay: calc(var(--revelar-orden, 0) * 65ms);
+}
+
+.js-revelar [data-revelar].revelado {
+  opacity: 1;
+  translate: none;
+}
+
+/* Cinturon y tirantes: aunque la clase llegara a colarse, aqui no se esconde. */
+@media (prefers-reduced-motion: reduce) {
+  .js-revelar [data-revelar],
+  .js-revelar [data-revelar].revelado {
+    opacity: 1;
+    translate: none;
+    transition: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   EL FAQ QUE ABRE, NO QUE SALTA
+   --------------------------------------------------------------------------
+   `grid-template-rows: 0fr -> 1fr` es la unica manera de animar "hasta lo que
+   mida el contenido" sin altura fija y sin JavaScript: el <details> sigue
+   siendo nativo, abre igual sin scripts y el buscador lee las respuestas.
+
+   La opacidad va como ANIMACION y no como transicion a proposito. Hay
+   navegadores que esconden el contenido del <details> con `display:none`, y
+   desde ahi una transicion no arranca: el alto salta. La animacion si corre,
+   asi que en el peor caso se pierde el tween de altura pero el desvanecido
+   se ve igual. Nunca se queda "de golpe" del todo.
+   ------------------------------------------------------------------------- */
+.faq-cuerpo {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+details[open] > .faq-cuerpo {
+  grid-template-rows: 1fr;
+}
+
+/* El overflow va en el hijo, no en la rejilla: es lo que hace posible el 0fr. */
+.faq-cuerpo > * {
+  overflow: hidden;
+}
+
+details[open] > .faq-cuerpo > * {
+  animation: faq-aparecer 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes faq-aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-0.35rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
