@@ -65,7 +65,7 @@ export default function Caminos() {
         <div className="contenedor">
           <EncabezadoSeccion
             numero="04"
-            kicker="los caminos"
+            kicker={caminos.kicker}
             color="#7FD8D8"
             titulo={caminos.titulo}
             sub={caminos.sub}

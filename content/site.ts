@@ -281,6 +281,12 @@ export type Camino = {
 
 export const caminos = {
   id: "caminos",
+  /**
+   * El kicker recoge lo que el visitante acaba de hacer en el laboratorio: ya
+   * ejecuto codigo, asi que la pregunta deja de ser "que es esto" y pasa a ser
+   * "a donde lleva". Por eso esta seccion va justo despues de la consola.
+   */
+  kicker: "Surfeaste la ola. ¿Y ahora?",
   titulo: "La tecnología tiene muchos caminos",
   sub: "¿Cuál va contigo? Toca cada uno y descubre qué hace la gente que vive de esto.",
   items: [
