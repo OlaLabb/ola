@@ -1,3 +1,4 @@
+import Compartir from "@/components/Compartir";
 import { Wordmark } from "@/components/Wordmark";
 import { footer } from "@/content/site";
 
@@ -8,6 +9,11 @@ export default function Footer() {
         <div className="lg:col-span-5">
           <Wordmark tamano="grande" conSello />
           <p className="mt-4 text-sm text-bruma">{footer.tagline}</p>
+
+          {/* Compartir es la ultima accion de la pagina: ya leiste, ahora pasala. */}
+          <div className="mt-7">
+            <Compartir />
+          </div>
         </div>
 
         <div className="lg:col-span-7 lg:pt-2">

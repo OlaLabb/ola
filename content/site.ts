@@ -312,6 +312,27 @@ export const caminos = {
   ] satisfies Camino[],
 };
 
+/**
+ * La consola: la unica pieza de la pagina donde el visitante TOCA. El texto de
+ * salida lleva {nombre}, que se reemplaza al ejecutar.
+ */
+export const consola = {
+  id: "consola",
+  kicker: "pruébalo",
+  titulo: "Tu primera línea de código, aquí mismo.",
+  sub: "¿Nunca has programado? Perfecto. Escribe tu nombre y presiona el botón.",
+  etiqueta: "ola-lab — terminal",
+  funcion: "hola",
+  placeholder: "tu nombre",
+  /** Si el input queda vacio, la ola igual saluda. */
+  nombrePorDefecto: "amig@",
+  boton: "▶ Ejecutar",
+  salida:
+    "¡{nombre}, acabas de programar. El Pacífico te está esperando en la tecnología. 🌊",
+  pie: "Eso que sentiste se llama crear.",
+  pieHref: "#voluntarios",
+};
+
 export const paraQuien = {
   id: "para-quien",
   kicker: "Para quién",
@@ -341,6 +362,69 @@ export const paraQuien = {
   ],
 };
 
+/** Las cuatro preguntas que hace todo colegio antes de decir que si. */
+export const faq = {
+  id: "faq",
+  kicker: "preguntas de colegios",
+  titulo: "Lo que todo colegio pregunta primero.",
+  items: [
+    {
+      pregunta: "¿Cuánto cuesta?",
+      respuesta:
+        "Nada. Ni ahora ni después. OLA LAB es gratuito para colegios y estudiantes, siempre.",
+    },
+    {
+      pregunta: "¿Necesitamos sala de computadores?",
+      respuesta:
+        "No es obligatoria. Nos adaptamos a lo que haya: computadores, celulares o sesiones sin pantalla. Cuéntanos tu realidad y armamos el plan.",
+    },
+    {
+      pregunta: "¿Presencial o virtual?",
+      respuesta:
+        "Las dos. Lo definimos según la conectividad y los tiempos de cada colegio. La ola llega como pueda llegar — pero llega.",
+    },
+    {
+      pregunta: "¿Qué debe hacer el colegio?",
+      respuesta:
+        "Escribirnos, contarnos sus grados y tiempos, y prestarnos el espacio. Del resto nos encargamos.",
+    },
+  ],
+};
+
+/**
+ * Bitacora honesta: donde va la ola hoy. El paso `encurso` es el unico
+ * resaltado — es el que explica por que la convocatoria viene justo despues.
+ */
+export const ruta = {
+  id: "ruta",
+  kicker: "bitácora",
+  titulo: "¿Dónde va la ola?",
+  pasos: [
+    {
+      emoji: "✅",
+      titulo: "La idea tomó forma",
+      etiqueta: "Hecho",
+      estado: "hecho",
+      color: "#78DCA0",
+    },
+    {
+      emoji: "🌊",
+      titulo: "Construyendo la marea: voluntarios + guía de estudio",
+      etiqueta: "En curso",
+      estado: "encurso",
+      color: "#5AC8EB",
+    },
+    {
+      emoji: "⏳",
+      titulo: "Primeras marejadas en colegios",
+      etiqueta: "Próximamente",
+      estado: "proximo",
+      color: "#B9C6C4",
+    },
+  ],
+  nota: "Este espacio se irá llenando de fotos e historias reales.",
+};
+
 export const voluntarios = {
   id: "voluntarios",
   kicker: "Convocatoria abierta",
@@ -365,6 +449,23 @@ export const voluntarios = {
       "¡Gracias!",
     ].join("\n"),
   },
+  /** Segunda orilla de la convocatoria: las empresas tambien traen ola. */
+  empresas: {
+    titulo: "¿Tienes una empresa? Trae la ola con nosotros.",
+    texto:
+      "Equipos, conectividad, espacios o patrocinio: lo que su empresa pueda aportar se convierte en horas de tecnología para estudiantes del Pacífico.",
+    cta: {
+      label: "Ser empresa aliada",
+      subject: "Queremos ser empresa aliada de OLA LAB",
+      body: [
+        "Hola OLA LAB, queremos sumarnos como empresa aliada.",
+        "",
+        "Empresa:",
+        "Persona de contacto:",
+        "Cómo podríamos aportar (equipos, conectividad, patrocinio, otro):",
+      ].join("\n"),
+    },
+  },
   nota: "También recibimos recomendaciones: si conoces a alguien que debería estar aquí, escríbenos con su nombre.",
   notaCta: {
     label: "Recomendar a alguien",
@@ -377,6 +478,14 @@ export const voluntarios = {
       "Cómo contactarla:",
     ].join("\n"),
   },
+};
+
+/** Boton de compartir del footer: navigator.share y, si no hay, copiar enlace. */
+export const compartir = {
+  label: "Compartir esta ola 🌊",
+  copiado: "¡Enlace copiado!",
+  titulo: "OLA LAB",
+  texto: "Que la distancia no decida el futuro de nadie.",
 };
 
 export const footer = {

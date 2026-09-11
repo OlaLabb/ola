@@ -1,4 +1,6 @@
 import Caminos from "@/components/Caminos";
+import Consola from "@/components/Consola";
+import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 import Frentes from "@/components/Frentes";
 import Hero from "@/components/Hero";
@@ -7,6 +9,7 @@ import OlaDivisoria from "@/components/OlaDivisoria";
 import Olas from "@/components/Olas";
 import ParaQuien from "@/components/ParaQuien";
 import QueEs from "@/components/QueEs";
+import Ruta from "@/components/Ruta";
 import Voluntarios from "@/components/Voluntarios";
 
 export default function Page() {
@@ -29,7 +32,12 @@ export default function Page() {
         {/* Las olas: el programa contado como marea, antes de los caminos. */}
         <Olas />
         <Caminos />
+        {/* La consola: el visitante deja de leer y escribe su primera linea. */}
+        <Consola />
         <ParaQuien />
+        <Faq />
+        {/* Donde va la ola hoy: prepara la convocatoria que viene enseguida. */}
+        <Ruta />
         {/* La ola anuncia el momento importante: la convocatoria. */}
         <OlaDivisoria arriba="#0A0E12" abajo="#12303B" />
         <Voluntarios />

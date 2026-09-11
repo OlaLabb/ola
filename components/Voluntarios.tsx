@@ -50,6 +50,25 @@ export default function Voluntarios() {
           </a>
         </div>
 
+        {/* La otra orilla de la convocatoria: las empresas tambien traen ola. */}
+        <div className="mx-auto mt-14 max-w-[46rem] rounded-3xl border border-white/[0.1] bg-white/[0.03] p-7 sm:p-9">
+          <h3 className="text-pretty text-[clamp(1.2rem,2.2vw,1.6rem)] font-semibold leading-tight text-espuma">
+            {voluntarios.empresas.titulo}
+          </h3>
+          <p className="cuerpo mx-auto mt-4 max-w-[52ch] text-pretty text-bruma">
+            {voluntarios.empresas.texto}
+          </p>
+          <a
+            href={mailto(
+              voluntarios.empresas.cta.subject,
+              voluntarios.empresas.cta.body,
+            )}
+            className="boton-linea mt-7"
+          >
+            {voluntarios.empresas.cta.label}
+          </a>
+        </div>
+
         <p className="mx-auto mt-9 max-w-[54ch] text-pretty text-sm leading-relaxed text-bruma">
           {voluntarios.nota}{" "}
           <a
