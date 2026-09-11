@@ -361,20 +361,21 @@ export default function Consola() {
   return (
     <section
       id={consola.id}
-      className="relative bg-profundo-bruma py-20 sm:py-28"
+      className="superficie-clara relative py-20 sm:py-28"
     >
       <div className="contenedor relative">
         <EncabezadoSeccion
-          numero="05"
+          numero="03"
           kicker={consola.kicker}
-          color="#78DCA0"
+          color="#217E46"
           titulo={consola.titulo}
           sub={consola.sub}
+          tono="claro"
         />
 
         <div className="mt-12 grid lg:grid-cols-12 lg:gap-12">
           <div className="min-w-0 lg:col-span-9 lg:col-start-4">
-            <div className="overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0E141B]">
+            <div className="superficie-oscura overflow-hidden rounded-3xl border border-noche/15 bg-[#0E141B] shadow-[0_24px_60px_-30px_rgba(10,14,18,0.75)]">
               {/* Barra de la terminal: tres puntos y el nombre de la sesion. */}
               <div className="flex items-center gap-2 border-b border-white/[0.07] px-5 py-3">
                 <span aria-hidden="true" className="flex gap-1.5">
@@ -498,14 +499,14 @@ export default function Consola() {
             {completo && (
               <div
                 role="status"
-                className="mt-6 rounded-3xl border border-manglar/35 bg-manglar/[0.08] p-6 sm:p-8"
+                className="mt-6 rounded-3xl border border-tinta-manglar/35 bg-tinta-manglar/[0.07] p-6 sm:p-8"
               >
-                <p className="text-pretty text-[clamp(1.1rem,2vw,1.4rem)] font-semibold leading-snug text-manglar">
+                <p className="text-pretty text-[clamp(1.1rem,2vw,1.4rem)] font-semibold leading-snug text-tinta-manglar">
                   {consola.final.texto}
                 </p>
                 <a
                   href={consola.final.cta.href}
-                  className="mt-4 inline-block text-pretty text-sm font-semibold text-oceano underline decoration-oceano/40 underline-offset-4 transition-colors hover:decoration-oceano"
+                  className="mt-4 inline-block text-pretty text-sm font-semibold text-tinta-oceano underline decoration-tinta-oceano/40 underline-offset-4 transition-colors hover:decoration-tinta-oceano"
                 >
                   {consola.final.cta.label}
                 </a>

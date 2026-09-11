@@ -169,6 +169,42 @@
   .superficie-clara :where(a, button, [tabindex]):focus-visible {
     outline-color: theme("colors.tinta.oceano");
   }
+
+  /* ------------------------------------------------------------------------
+     ISLA OSCURA DENTRO DE UNA CLARA
+     ------------------------------------------------------------------------
+     El laboratorio es una terminal oscura metida en una seccion clara: una
+     terminal con fondo claro no se lee como terminal. Lo que vive ahi dentro
+     vuelve a jugar con las reglas de la noche, incluido el resplandor coral
+     del boton de ejecutar, que sobre la terminal si funciona.
+     ------------------------------------------------------------------------ */
+  .superficie-clara .superficie-oscura {
+    @apply text-espuma;
+    color-scheme: dark;
+  }
+
+  .superficie-clara .superficie-oscura .lead {
+    @apply text-bruma;
+  }
+
+  .superficie-clara .superficie-oscura .boton-accion {
+    @apply border-0;
+    box-shadow: 0 10px 36px -12px rgba(255, 178, 94, 0.85);
+  }
+
+  .superficie-clara .superficie-oscura .boton-accion:hover {
+    box-shadow: 0 14px 44px -12px rgba(255, 178, 94, 1);
+  }
+
+  .superficie-clara .superficie-oscura .boton-linea {
+    @apply text-oceano border-oceano/40 hover:border-oceano hover:bg-oceano/10;
+  }
+
+  .superficie-clara
+    .superficie-oscura
+    :where(a, button, [tabindex]):focus-visible {
+    outline-color: theme("colors.oceano");
+  }
 }
 
 @layer utilities {
