@@ -69,7 +69,8 @@ El wordmark siempre va **en minúsculas**: `ola lab`, con el sello `by gimti </>
 | `atardecer` | `#FFB25E` | **coral — RESERVADO para CTAs y momentos de acción** |
 
 Tokens de apoyo ya definidos en [`tailwind.config.ts`](tailwind.config.ts): `bruma`
-(`#B9C6C4`, texto secundario), `coral` (`#F2A0C0`, Ola de Diseño), `violeta`, `turquesa`, y
+(`#B9C6C4`, texto secundario), `coral` (`#F2A0C0`, Ola de Diseño), `violeta`, `turquesa`,
+`arena` (`#F6E7C6`, solo la playa ilustrada de "Los que traen la ola"), y
 la familia `profundo.*` (`#0E3A4A` `#155E75` `#177A9C` `#12303B` `#07202B`) para los fondos
 de sección.
 
@@ -105,8 +106,9 @@ usando los acentos normales.
 
 ### Superficies claras
 
-Tres secciones van sobre `espuma` — **el laboratorio, colegios y empresas aliadas** — porque
-son los tres momentos en que la página pide que *hagas* algo, no que leas. Empresas cierra en
+Cuatro secciones van sobre `espuma` — **el laboratorio, colegios, los que traen la ola y
+empresas aliadas** — porque son los momentos en que la página pide que *hagas* algo o te pone
+caras, no que leas. Van alternadas con noche: nunca dos claras seguidas. Empresas cierra en
 claro a propósito: el final eran tres secciones oscuras seguidas y cansaba la vista. Se marcan con la clase
 `.superficie-clara`, que corrige en un solo sitio lo que el resto de la página da por
 sentado: el texto secundario, el contorno del CTA (que sobre espuma da 1.65 de contraste no
@@ -250,6 +252,7 @@ al final quienes traen la ola.
 | 04 | Los caminos | [`Caminos`](components/Caminos.tsx) | `profundo.abismo` |
 | 05 | Colegios *(+ las preguntas)* | [`Colegios`](components/Colegios.tsx) | **`espuma`** ← claro |
 | 06 | Bitácora / ¿dónde va la ola? | [`Ruta`](components/Ruta.tsx) | `noche` |
+| — | Los que traen la ola *(directorio de voluntarios)* | [`LosQueTraenLaOla`](components/LosQueTraenLaOla.tsx) + [`Directorio`](components/Directorio.tsx) | **`espuma`** ← claro, cierra en `arena` |
 | — | Trae la ola *(personas)* | [`TraeLaOla`](components/TraeLaOla.tsx) | `profundo.bruma` |
 | — | Empresas aliadas *(la otra orilla)* | [`Empresas`](components/Empresas.tsx) | **`espuma`** ← claro |
 | — | Footer | [`Footer`](components/Footer.tsx) + [`Compartir`](components/Compartir.tsx) | `profundo.abismo` |
@@ -269,11 +272,24 @@ que da ritmo a todas las secciones; acepta `tono="claro"`),
 wordmark normal es invisible), [`Movimiento`](components/Movimiento.tsx)
 (`LazyMotion` de Framer Motion — dentro se usa `m.*`, nunca `motion.*`).
 
-El **nav** son cuatro destinos: tres anclas (Las olas · Pruébalo · Colegios) y el CTA "Trae
-la ola", que va aparte porque es el único que pide algo.
+El **nav** son cinco destinos: cuatro anclas (Las olas · Pruébalo · Colegios · Los que traen
+la ola) y el CTA "Trae la ola", que va aparte porque es el único que pide algo.
 
 Solo son *client components* los que lo necesitan: `Hero`, `MarVivo`, `Nav`, `Caminos`,
-`Consola`, `Compartir`, `Movimiento`. Todo lo demás se renderiza en el servidor.
+`Consola`, `Directorio`, `Compartir`, `Movimiento`. Todo lo demás se renderiza en el servidor.
+
+### El directorio de voluntarios ([`components/LosQueTraenLaOla.tsx`](components/LosQueTraenLaOla.tsx))
+
+- **Los datos viven en [`content/voluntarios.ts`](content/voluntarios.ts)**: sumar a alguien es
+  agregar un objeto. El contador `marea.length`, las pills de filtro (solo olas con gente,
+  principal o extra) y la grilla salen de ahí; el orden lo manda `numero`.
+- Nombre y color de cada ola se leen de `olas.items`; el texto va en su tinta
+  (`losQueTraenLaOla.tintaOla`). Rellenos tenues con texto encima: máximo 8 % — con más, la
+  tinta baja de 4.5:1 en letra pequeña.
+- Los carnets filtrados van con `hidden` y su `className` es fijo: si React la reescribiera se
+  llevaría la clase `revelado` y el carnet quedaría invisible.
+- El pie "la costa" (mar, código flotando, arena, palmera y tabla) va en el flujo, debajo del
+  contenido, y reusa `.ola-svg` del mar del hero.
 
 ### El mini-laboratorio ([`components/Consola.tsx`](components/Consola.tsx))
 

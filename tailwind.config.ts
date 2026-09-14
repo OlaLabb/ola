@@ -25,6 +25,8 @@ const config: Config = {
         coral: "#F2A0C0",
         violeta: "#9B8CFF",
         turquesa: "#7FD8D8",
+        /** La franja de playa al pie de "Los que traen la ola". Solo ilustracion. */
+        arena: "#F6E7C6",
         profundo: {
           DEFAULT: "#0E3A4A",
           claro: "#177A9C",

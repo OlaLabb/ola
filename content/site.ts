@@ -8,6 +8,7 @@
  */
 
 import type { NombreIcono } from "@/components/Icono";
+import type { IdOla } from "@/content/voluntarios";
 
 /**
  * URL canonica del sitio. De aqui salen el canonical, la Open Graph, el
@@ -75,10 +76,10 @@ export const seo = {
 };
 
 /**
- * El nav son cuatro destinos, no cinco enlaces y un boton que repite uno de
- * ellos. Las tres anclas son las tres paradas del viaje del estudiante (que
- * hay, pruebalo, y la puerta para su colegio); el CTA es la cuarta y va
- * aparte porque es la unica que pide algo.
+ * El nav son cinco destinos, no seis enlaces y un boton que repite uno de
+ * ellos. Las tres primeras anclas son las paradas del viaje del estudiante
+ * (que hay, pruebalo, y la puerta para su colegio); la cuarta pone cara a
+ * quienes traen la ola. El CTA va aparte porque es el unico que pide algo.
  *
  * "Que es" y "¿Donde vamos?" salieron: la primera esta a un scroll del hero y
  * la segunda es bitacora, no destino.
@@ -93,6 +94,7 @@ export const nav = {
     { label: "Las olas", href: "#olas" },
     { label: "Pruébalo", href: "#consola" },
     { label: "Colegios", href: "#colegios" },
+    { label: "Los que traen la ola", href: "#los-que-traen-la-ola" },
   ],
 };
 
@@ -535,6 +537,67 @@ export const ruta = {
     },
   ] satisfies Paso[],
   nota: "Este espacio se irá llenando de fotos e historias reales.",
+};
+
+/**
+ * ---------------------------------------------------------------------------
+ * LOS QUE TRAEN LA OLA — el directorio de voluntarios fundadores
+ * ---------------------------------------------------------------------------
+ * Va justo despues de la bitacora: esa dice "construyendo la marea:
+ * voluntarios" y esta les pone nombre y cara. La convocatoria de "Trae la
+ * ola" viene detras, cuando ya se vio que hay gente de verdad aqui.
+ *
+ * Los datos de cada persona viven en `content/voluntarios.ts`; aqui solo el
+ * texto de la seccion.
+ * ---------------------------------------------------------------------------
+ */
+export const losQueTraenLaOla = {
+  id: "los-que-traen-la-ola",
+  /** El numero sale del array de voluntarios, nunca se escribe a mano. */
+  contador: (n: number) => `marea.length => ${n};`,
+  titulo: "Los que traen la ola",
+  sub: "Profesionales que ya viven de la tecnología y decidieron llevarla donde más se necesita. Sin nómina, sin jefes: solo ganas de compartir.",
+  filtros: {
+    etiqueta: "Filtrar voluntarios por ola",
+    todas: "Todas las olas",
+    /** Anuncio para lectores de pantalla cada vez que cambia el filtro. */
+    resultado: (n: number) =>
+      `${n} ${n === 1 ? "carnet" : "carnets"} a la vista`,
+  },
+  carnet: {
+    rol: { f: "Voluntaria fundadora", m: "Voluntario fundador" },
+    /** Solo para lectores de pantalla: le da sentido a las pills. */
+    olaPrincipal: "Ola principal:",
+    olasExtra: "También trae:",
+  },
+  siguiente: {
+    titulo: "¿Tú traes la siguiente?",
+    texto: "Aquí va tu carnet",
+    /** Abre el mismo correo de postulacion de `traeLaOla.cta`. */
+    cta: "Sumarme a la marea",
+  },
+  cierre: "marea.sumar(voluntario) => imparable;",
+  /** Codigo que flota sobre el mar del pie de la seccion. Decorativo. */
+  snippets: [
+    "surfear(ola)",
+    "ignorar(distancia)",
+    'console.log("hola, Pacífico")',
+    "marea.sumar(voluntario)",
+  ],
+  /**
+   * El color de cada ola sobre fondo claro. El crudo (`olas.items[].color`)
+   * da 1.5-2:1 sobre espuma: sirve para bordes, puntos y rellenos tenues,
+   * nunca para texto. El texto va en su `tinta.*` (>=4.6:1).
+   */
+  tintaOla: {
+    programacion: "#217E46",
+    ia: "#C1462D",
+    innovacion: "#227893",
+    datos: "#257A7A",
+    diseno: "#CB306C",
+    automatizacion: "#6C5BD9",
+    seguridad: "#356BD0",
+  } satisfies Record<IdOla, string>,
 };
 
 /**

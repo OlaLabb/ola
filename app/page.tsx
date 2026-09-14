@@ -4,6 +4,7 @@ import Consola from "@/components/Consola";
 import Empresas from "@/components/Empresas";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
+import LosQueTraenLaOla from "@/components/LosQueTraenLaOla";
 import Nav from "@/components/Nav";
 import OlaDivisoria from "@/components/OlaDivisoria";
 import Olas from "@/components/Olas";
@@ -22,8 +23,9 @@ import TraeLaOla from "@/components/TraeLaOla";
  * El laboratorio subio por delante de los caminos: la pregunta "¿a donde
  * lleva esto?" solo tiene sentido despues de haber hecho algo, no antes.
  *
- * Las tres secciones sobre `espuma` (el laboratorio, colegios y empresas) son
- * los tres momentos en que la pagina pide que HAGAS algo. Empresas cierra en
+ * Las secciones sobre `espuma` (el laboratorio, colegios, los que traen la ola
+ * y empresas) son los momentos en que la pagina pide que HAGAS algo o pone
+ * caras. Van alternadas con noche: nunca dos claras seguidas. Empresas cierra en
  * claro a proposito: el final eran tres secciones oscuras seguidas y cansaba.
  * Cada cruce oscuro/claro se cose con una ola; el trazo de su cresta se dibuja
  * sobre la seccion de arriba, asi que se invierte cuando esa es clara.
@@ -36,6 +38,8 @@ const FONDO = {
   abismo: "#07202B",
   espuma: "#F2F7F5",
   bruma: "#12303B",
+  /** El pie de playa de "Los que traen la ola". */
+  arena: "#F6E7C6",
 };
 
 export default function Page() {
@@ -79,7 +83,11 @@ export default function Page() {
 
         {/* --- Donde va la ola hoy, y quienes la traen -------------------- */}
         <Ruta />
-        <OlaDivisoria arriba={FONDO.noche} abajo={FONDO.bruma} />
+        <OlaDivisoria arriba={FONDO.noche} abajo={FONDO.espuma} />
+        {/* La bitacora dice "voluntarios"; aqui tienen nombre y cara. Cierra en
+            arena, asi que la divisoria de abajo arranca de ahi. */}
+        <LosQueTraenLaOla />
+        <OlaDivisoria arriba={FONDO.arena} abajo={FONDO.bruma} trazo="oscuro" />
         <TraeLaOla />
 
         {/* La otra orilla, en claro: rompe la carrera oscura del cierre. */}

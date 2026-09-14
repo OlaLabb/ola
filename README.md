@@ -36,6 +36,7 @@ componentes para cambiar la página:
 | Los 4 frentes de trabajo | `frentes.items` (cada uno con su `color`: `oceano`, `manglar`, `atardecer`, `coral`) |
 | Las olas del programa | `olas.items` (nombre, `promesa`, `entregable` y su color; cada tema del programa es **una ola**, nunca un "taller" ni un "módulo") |
 | Los caminos de la tecnología | `caminos.items` (nombre, emoji, color, frase y "un día típico") |
+| Sumar un voluntario al directorio "Los que traen la ola" | un objeto más en [`content/voluntarios.ts`](content/voluntarios.ts) (contador, filtros y grilla salen solos); los textos de la sección, en `losQueTraenLaOla` |
 | Correo de contacto | `EMAIL` |
 | Asuntos y cuerpos de los `mailto:` | `voluntarios.cta`, `voluntarios.notaCta`, `paraQuien.columnas[].cta` |
 | Ficha del hero (grados, materia, territorio, costo) | `hero.ficha` |
