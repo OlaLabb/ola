@@ -1,4 +1,26 @@
 /**
+ * La etiqueta numerica de una seccion: la raya corta de color y el numero.
+ * Va sola donde la seccion arma su propio encabezado (La Marea); el resto la
+ * recibe dentro de `EncabezadoSeccion`.
+ */
+export function NumeroSeccion({
+  numero,
+  color,
+}: {
+  numero: string;
+  color: string;
+}) {
+  return (
+    <>
+      <div className="mb-4 h-px w-8" style={{ background: color }} />
+      <p className="font-mono text-xs tracking-[0.18em]" style={{ color }}>
+        {numero}
+      </p>
+    </>
+  );
+}
+
+/**
  * Encabezado comun a todas las secciones.
  * El rail izquierdo (numero + etiqueta) se repite en toda la pagina: da ritmo
  * de laboratorio y, en escritorio, usa la columna que antes quedaba vacia.
@@ -29,10 +51,7 @@ export default function EncabezadoSeccion({
     // lo usan. El hero no lo usa, asi que el mar se queda fuera.
     <header data-revelar className="grid gap-6 lg:grid-cols-12 lg:gap-12">
       <div className="lg:col-span-3">
-        <div className="mb-4 h-px w-8" style={{ background: color }} />
-        <p className="font-mono text-xs tracking-[0.18em]" style={{ color }}>
-          {numero}
-        </p>
+        <NumeroSeccion numero={numero} color={color} />
         <p
           className={`mt-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.2em] ${
             kickerColor ? "" : apagado

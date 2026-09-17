@@ -117,7 +117,7 @@ export const hero = {
   /** Ficha del laboratorio: acompaña al hero en pantallas grandes. */
   ficha: [
     { campo: "grados", valor: "9° · 10° · 11°" },
-    { campo: "materia", valor: "programación · IA · innovación" },
+    { campo: "programa", valor: "siete olas · un producto tuyo" },
     { campo: "territorio", valor: "Pacífico colombiano" },
     { campo: "costo", valor: "gratuito, siempre" },
   ],
@@ -296,7 +296,8 @@ export const olas = {
  * del registro de arriba. El color NO se repite aqui: sale de `olas.items` por
  * `id`, para que cada ola se vea igual en toda la pagina.
  *
- * Los textos son los del mockup aprobado, tal cual (voseo incluido).
+ * Los textos son los del mockup aprobado, con el trato de tu del resto de la
+ * pagina.
  * ---------------------------------------------------------------------------
  */
 export type OlaDeLaMarea = {
@@ -330,16 +331,16 @@ export const laMarea = {
   titulo: "Siete olas. Un producto tuyo.",
   lead: {
     antes:
-      "Aquí no hay clases. Hay olas, y van conectadas: cada una toma lo que la anterior dejó. Surfeás la primera con un problema de tu pueblo y salís de la última con ",
-    resaltado: "una app que inventaste vos",
+      "Aquí no hay clases. Hay olas, y van conectadas: cada una toma lo que la anterior dejó. Surfeas la primera con un problema de tu pueblo y sales de la última con ",
+    resaltado: "una app que inventaste tú",
     despues: ", con nombre, cara, código y candado.",
   },
   travesiaEtiqueta: "Las siete olas de la Marea",
   numero: (n: number, total: number) => `ola ${n} de ${total}`,
   pasos: {
-    recibe: "Recibís",
-    lleva: "Te llevás",
-    entrega: "Le pasás a la siguiente",
+    recibe: "Recibes",
+    lleva: "Te llevas",
+    entrega: "Le pasas a la siguiente",
   },
   anterior: "← Ola anterior",
   siguiente: "Surfear la siguiente ola →",
@@ -512,9 +513,9 @@ export const laMarea = {
   },
 
   aviso: {
-    resaltado: "¿Solo tenés tiempo para una ola?",
+    resaltado: "¿Solo tienes tiempo para una ola?",
     texto:
-      " Tranquilo: cada ola se surfea sola y te deja algo construido. Pero si surfeás las siete, salís con un producto que es tuyo.",
+      " Tranquilo: cada ola se surfea sola y te deja algo construido. Pero si surfeas las siete, sales con un producto que es tuyo.",
   },
   /** Las dos formas de traer la Marea. Ambos CTA llevan a la seccion de colegios. */
   modos: [
@@ -543,8 +544,8 @@ export const laMarea = {
   ],
   feria: {
     lineas: [
-      "Cada ola que surfeás te deja una insignia.",
-      "Y cuando completás la Marea, ya no sos el mismo.",
+      "Cada ola que surfeas te deja una insignia.",
+      "Y cuando completas la Marea, ya no eres el mismo.",
     ],
     pie: 'La Marea termina en una feria donde cada estudiante dice: "esto lo hice yo".',
   },

@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 
+import { NumeroSeccion } from "@/components/EncabezadoSeccion";
 import Icono from "@/components/Icono";
 import {
   colegios,
@@ -301,7 +302,8 @@ export default function LaMarea() {
       style={{ "--ola": COLOR[ola.id] } as React.CSSProperties}
     >
       <div className="contenedor">
-        <p className="mb-3.5 font-mono text-sm text-manglar">
+        <NumeroSeccion numero="02" color="#5AC8EB" />
+        <p className="mb-3.5 mt-1.5 font-mono text-sm text-manglar">
           {laMarea.kicker.objeto}
           <span className="text-oceano">{laMarea.kicker.metodo}</span>
           {laMarea.kicker.resto}
