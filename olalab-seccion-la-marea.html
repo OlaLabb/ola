@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OLA LAB — La Marea (mockup de sección)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noche:#0A0E12; --noche2:#111820; --espuma:#F2F7F5; --oceano:#5AC8EB; --manglar:#78DCA0;
+    --coral:#FFB25E; --gris:#9AA3AB; --linea:rgba(242,247,245,.12);
+    --inno:#5AC8EB; --diseno:#E6A4BF; --prog:#78DCA0; --datos:#94D6D7; --auto:#998DF8; --ia:#F09079; --seg:#658BE4;
+    --ola:var(--inno);
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){} }
+  :root[data-theme="dark"]{}
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--noche);color:var(--espuma);font-family:Poppins,"Segoe UI",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace}
+  a{color:var(--oceano)}
+  button{font:inherit;cursor:pointer}
+  :focus-visible{outline:2px solid var(--coral);outline-offset:3px}
+
+  /* ---------- marco del mockup ---------- */
+  .nota{max-width:1180px;margin:0 auto;padding:18px 24px 0;color:var(--gris);font-size:13px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .nota span{border:1px solid var(--linea);border-radius:999px;padding:3px 10px}
+
+  section.marea{max-width:1180px;margin:0 auto;padding:64px 24px 96px}
+  .kicker{color:var(--manglar);font-size:14px;margin:0 0 14px}
+  .kicker .k{color:var(--oceano)}
+  h2{font-size:clamp(34px,5vw,58px);line-height:1.05;font-weight:700;letter-spacing:-.02em;margin:0 0 18px;max-width:16ch}
+  .lead{font-size:clamp(17px,2vw,20px);font-weight:300;color:#C9D1D6;max-width:60ch;margin:0}
+  .lead b{color:var(--espuma);font-weight:500}
+
+  /* ---------- travesía ---------- */
+  .travesia{margin:56px 0 28px;position:relative}
+  .travesia svg{width:100%;height:auto;display:block;overflow:visible}
+  .nodos{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:-34px;position:relative}
+  .nodo{background:transparent;border:0;color:var(--espuma);padding:0;display:flex;flex-direction:column;align-items:center;gap:10px;min-height:44px}
+  .nodo .c{width:46px;height:46px;border-radius:50%;border:2px solid var(--nc);display:grid;place-items:center;font-weight:600;font-size:15px;background:var(--noche);transition:transform .25s,box-shadow .25s,background .25s;color:var(--nc)}
+  .nodo .n{font-size:13px;color:var(--gris);text-align:center;line-height:1.2}
+  .nodo[aria-pressed="true"] .c{background:var(--nc);color:var(--noche);transform:scale(1.15);box-shadow:0 0 0 8px color-mix(in srgb,var(--nc) 22%,transparent)}
+  .nodo[aria-pressed="true"] .n{color:var(--espuma);font-weight:500}
+  .nodo:hover .c{transform:scale(1.08)}
+  .nodo.done .c{border-style:solid;background:color-mix(in srgb,var(--nc) 30%,var(--noche))}
+
+  /* ---------- detalle ---------- */
+  .detalle{display:grid;grid-template-columns:1.25fr .9fr;gap:40px;align-items:stretch;margin-top:40px;border-top:1px solid var(--linea);padding-top:40px}
+  .num{color:var(--ola);font-size:14px;margin:0 0 6px}
+  .num small{color:var(--gris)}
+  h3{font-size:clamp(28px,3.4vw,40px);line-height:1.1;margin:0 0 8px;color:var(--ola);font-weight:700;letter-spacing:-.01em}
+  .promesa{font-size:clamp(18px,2vw,22px);font-weight:300;margin:0 0 26px;color:#DDE5E9}
+  .pasos{display:grid;gap:14px;margin:0;padding:0;list-style:none}
+  .pasos li{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:start;padding:14px 0;border-top:1px solid var(--linea)}
+  .pasos li:last-child{border-bottom:1px solid var(--linea)}
+  .pasos dt{font-size:13px;color:var(--gris);margin:0;padding-top:2px}
+  .pasos dd{margin:0;font-size:16px}
+  .pasos .lleva dd{color:var(--espuma);font-weight:500}
+  .pasos .lleva dd::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--ola);margin-right:9px;vertical-align:1px}
+  .nav{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+  .btn{border-radius:999px;padding:12px 20px;border:1px solid var(--linea);background:transparent;color:var(--espuma);min-height:44px}
+  .btn:hover{border-color:var(--espuma)}
+  .btn.sig{background:var(--ola);color:var(--noche);border-color:var(--ola);font-weight:600}
+  .btn[disabled]{opacity:.35;cursor:default}
+
+  /* ---------- el hilo: producto que crece ---------- */
+  .hilo{background:var(--noche2);border:1px solid var(--linea);border-radius:28px;padding:28px 28px 24px;display:flex;flex-direction:column;align-items:center;gap:18px}
+  .hilo .t{align-self:flex-start;font-size:13px;color:var(--gris);margin:0}
+  .hilo .t b{color:var(--espuma);font-weight:500}
+  .phone{width:230px;height:430px;border-radius:32px;background:#050809;border:3px solid #1E2830;padding:14px;position:relative;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+  .phone .screen{width:100%;height:100%;border-radius:22px;background:#0D1319;overflow:hidden;position:relative}
+  .stage{position:absolute;inset:0;padding:18px 16px;display:none;flex-direction:column;gap:10px;animation:llega .45s ease}
+  .stage.on{display:flex}
+  @keyframes llega{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.stage{animation:none}.nodo .c{transition:none}}
+  .st-title{font-size:12px;color:var(--gris);margin:0}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px}
+  .brand i{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--oceano),var(--manglar));display:inline-block}
+  .sketch{border:1.5px dashed #3A4650;border-radius:14px;padding:12px;font-size:12px;color:#C9D1D6;line-height:1.4}
+  .sketch .h{font-weight:600;color:var(--espuma);font-size:15px;margin-bottom:6px}
+  .wires{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+  .wires div{aspect-ratio:9/16;border:1.5px solid #3A4650;border-radius:8px;position:relative}
+  .wires div::before{content:"";position:absolute;left:5px;right:5px;top:6px;height:5px;background:#2A3540;border-radius:3px}
+  .wires div::after{content:"";position:absolute;left:5px;right:14px;top:16px;height:4px;background:#2A3540;border-radius:3px;box-shadow:0 8px 0 #2A3540,0 16px 0 #2A3540}
+  .swatches{display:flex;gap:6px}.swatches i{flex:1;height:18px;border-radius:5px;display:block}
+  .item{display:flex;justify-content:space-between;align-items:center;background:#141C24;border-radius:10px;padding:9px 10px;font-size:12px}
+  .item b{font-weight:500}.item span{color:var(--manglar)}
+  .btnmini{margin-top:auto;background:var(--coral);color:var(--noche);border-radius:999px;text-align:center;font-size:12px;font-weight:600;padding:9px}
+  .bars{display:flex;align-items:flex-end;gap:8px;height:120px;margin-top:6px}
+  .bars i{flex:1;background:var(--datos);border-radius:6px 6px 0 0;display:block;opacity:.85}
+  .axis{display:flex;justify-content:space-between;font-size:10px;color:var(--gris)}
+  .bubble{background:#141C24;border-radius:14px 14px 14px 4px;padding:10px;font-size:12px;max-width:92%}
+  .bubble.me{background:color-mix(in srgb,var(--oceano) 22%,#141C24);border-radius:14px 14px 4px 14px;align-self:flex-end}
+  .bubble small{display:block;color:var(--gris);font-size:10px;margin-bottom:3px}
+  .bot{display:flex;gap:8px;align-items:center;font-size:12px}
+  .bot i{width:26px;height:26px;border-radius:8px;background:var(--auto);display:inline-grid;place-items:center;color:var(--noche);font-weight:700;font-style:normal;font-size:12px}
+  .lock{margin:auto;text-align:center}
+  .lock svg{width:64px;height:64px}
+  .lock p{margin:8px 0 0;font-size:12px;color:#C9D1D6}
+  .code{font-size:12px;color:var(--gris);text-align:center;margin:0}
+  .code .v{color:var(--manglar)}.code .s{color:var(--oceano)}
+
+  /* ---------- aviso + modalidades ---------- */
+  .aviso{margin:64px 0 0;padding:26px 28px;border-radius:20px;background:color-mix(in srgb,var(--manglar) 10%,var(--noche));border:1px solid color-mix(in srgb,var(--manglar) 35%,transparent);display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+  .aviso .ic{width:52px;height:52px;border-radius:50%;background:var(--manglar);display:grid;place-items:center}
+  .aviso p{margin:0;font-size:17px;font-weight:300;color:#DDE5E9}
+  .aviso p b{font-weight:500;color:var(--espuma)}
+
+  .modos{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+  .modo{border:1px solid var(--linea);border-radius:24px;padding:30px}
+  .modo.full{border-color:var(--oceano);background:color-mix(in srgb,var(--oceano) 7%,var(--noche))}
+  .modo h4{margin:0 0 4px;font-size:24px;font-weight:600}
+  .modo .sub{margin:0 0 18px;color:var(--gris);font-size:14px}
+  .modo ul{margin:0 0 22px;padding:0;list-style:none;display:grid;gap:8px;font-size:15px}
+  .modo li{padding-left:22px;position:relative}
+  .modo li::before{content:"";position:absolute;left:0;top:9px;width:10px;height:10px;border-radius:50%;background:var(--manglar)}
+  .modo.full li::before{background:var(--oceano)}
+  .cta{display:inline-block;border-radius:999px;padding:13px 22px;font-weight:600;text-decoration:none;min-height:44px}
+  .cta.coral{background:var(--coral);color:var(--noche)}
+  .cta.ghost{border:1px solid var(--linea);color:var(--espuma)}
+  .cta.ghost:hover{border-color:var(--espuma)}
+
+  .feria{margin-top:72px;text-align:center}
+  .feria p.big{font-size:clamp(24px,3.5vw,40px);font-weight:600;letter-spacing:-.01em;margin:0 0 10px;line-height:1.15}
+  .feria p.small{margin:0;color:var(--gris);font-weight:300;font-size:17px}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .detalle{grid-template-columns:1fr}
+    .modos{grid-template-columns:1fr}
+  }
+  @media (max-width:700px){
+    .travesia svg{display:none}
+    .nodos{grid-template-columns:repeat(4,1fr);margin-top:0;row-gap:22px}
+    .nodo .n{font-size:12px}
+    .pasos li{grid-template-columns:1fr;gap:4px}
+    .aviso{grid-template-columns:1fr}
+    .hilo{padding:20px}
+  }
+</style>
+</head>
+<body>
+
+<p class="nota"><span>Mockup</span><span>Sección nueva: "La Marea"</span><span>Reemplaza a "Aquí no hay clases. Hay olas."</span></p>
+
+<section class="marea" aria-labelledby="titulo-marea">
+  <p class="kicker mono">marea<span class="k">.conectar</span>(olas) ⇒ producto;</p>
+  <h2 id="titulo-marea">Siete olas. Un producto tuyo.</h2>
+  <p class="lead">Aquí no hay clases. Hay olas, y van conectadas: cada una toma lo que la anterior dejó. Surfeás la primera con un problema de tu pueblo y salís de la última con <b>una app que inventaste vos</b>, con nombre, cara, código y candado.</p>
+
+  <!-- travesía -->
+  <div class="travesia">
+    <svg viewBox="0 0 1132 90" aria-hidden="true">
+      <defs>
+        <linearGradient id="g" x1="0" x2="1">
+          <stop offset="0" stop-color="#5AC8EB"/><stop offset=".5" stop-color="#78DCA0"/><stop offset="1" stop-color="#5AC8EB"/>
+        </linearGradient>
+      </defs>
+      <path d="M0 62 C 60 30, 120 30, 180 62 S 300 94, 360 62 S 480 30, 540 62 S 660 94, 720 62 S 840 30, 900 62 S 1020 94, 1080 62 S 1120 50, 1132 55" fill="none" stroke="rgba(242,247,245,.10)" stroke-width="3" stroke-linecap="round"/>
+      <path id="ola-viva" d="M0 62 C 60 30, 120 30, 180 62 S 300 94, 360 62 S 480 30, 540 62 S 660 94, 720 62 S 840 30, 900 62 S 1020 94, 1080 62 S 1120 50, 1132 55" fill="none" stroke="url(#g)" stroke-width="3" stroke-linecap="round" pathLength="100" stroke-dasharray="14 100" stroke-dashoffset="0"/>
+    </svg>
+    <div class="nodos" role="tablist" aria-label="Las siete olas de la Marea">
+      <button class="nodo" role="tab" aria-pressed="true" data-i="0" style="--nc:var(--inno)"><span class="c">1</span><span class="n">Innovación</span></button>
+      <button class="nodo" role="tab" aria-pressed="false" data-i="1" style="--nc:var(--diseno)"><span class="c">2</span><span class="n">Diseño</span></button>
+      <button class="nodo" role="tab" aria-pressed="false" data-i="2" style="--nc:var(--prog)"><span class="c">3</span><span class="n">Programación</span></button>
+      <button class="nodo" role="tab" aria-pressed="false" data-i="3" style="--nc:var(--datos)"><span class="c">4</span><span class="n">Datos</span></button>
+      <button class="nodo" role="tab" aria-pressed="false" data-i="4" style="--nc:var(--auto)"><span class="c">5</span><span class="n">Automatización</span></button>
+      <button class="nodo" role="tab" aria-pressed="false" data-i="5" style="--nc:var(--ia)"><span class="c">6</span><span class="n">IA</span></button>
+      <button class="nodo" role="tab" aria-pressed="false" data-i="6" style="--nc:var(--seg)"><span class="c">7</span><span class="n">Seguridad</span></button>
+    </div>
+  </div>
+
+  <!-- detalle de la ola activa -->
+  <div class="detalle" id="detalle">
+    <div>
+      <p class="num mono"><span id="d-num">ola 1 de 7</span> <small>· <span id="d-antes">empieza la Marea</span></small></p>
+      <h3 id="d-nombre">Ola de Innovación</h3>
+      <p class="promesa" id="d-promesa">Convierte los problemas de tu territorio en ideas que valen.</p>
+      <dl class="pasos">
+        <li><dt>Recibís</dt><dd id="d-recibe">Un problema real de tu pueblo. Nada más.</dd></li>
+        <li class="lleva"><dt>Te llevás</dt><dd id="d-lleva">Una idea con nombre y forma: qué resuelve, para quién y cómo se llama.</dd></li>
+        <li><dt>Le pasás a la siguiente</dt><dd id="d-entrega">Tu idea con nombre → la Ola de Diseño</dd></li>
+      </dl>
+      <div class="nav">
+        <button class="btn" id="b-ant">← Ola anterior</button>
+        <button class="btn sig" id="b-sig">Surfear la siguiente ola →</button>
+      </div>
+    </div>
+
+    <div class="hilo">
+      <p class="t">Así crece <b>Marea Fresca</b>, la app de ejemplo, ola por ola</p>
+      <div class="phone"><div class="screen">
+
+        <div class="stage on" data-s="0">
+          <p class="st-title">Cuaderno de Innovación</p>
+          <div class="sketch">
+            <div class="h">Marea Fresca</div>
+            El pescado se pierde porque no hay a quién venderlo a tiempo.<br><br>
+            Una app para que los pescadores del pueblo vendan directo, sin intermediarios.
+          </div>
+          <div class="sketch" style="border-color:#2A3540;color:var(--gris)">¿Para quién? Pescadores y familias de Buenaventura.</div>
+        </div>
+
+        <div class="stage" data-s="1">
+          <p class="st-title">Diseño</p>
+          <div class="brand"><i></i>Marea Fresca</div>
+          <div class="swatches"><i style="background:#5AC8EB"></i><i style="background:#78DCA0"></i><i style="background:#F2F7F5"></i><i style="background:#0A0E12;border:1px solid #2A3540"></i></div>
+          <p class="st-title">Tres pantallas</p>
+          <div class="wires"><div></div><div></div><div></div></div>
+          <p class="st-title" style="margin-top:auto">Lo que hay hoy · cuánto cuesta · cómo pido</p>
+        </div>
+
+        <div class="stage" data-s="2">
+          <div class="brand"><i></i>Marea Fresca</div>
+          <p class="st-title">Pescado de hoy</p>
+          <div class="item"><b>Pargo rojo</b><span>$18.000/kg</span></div>
+          <div class="item"><b>Corvina</b><span>$15.000/kg</span></div>
+          <div class="item"><b>Camarón tití</b><span>$22.000/kg</span></div>
+          <div class="btnmini">Pedir ahora</div>
+        </div>
+
+        <div class="stage" data-s="3">
+          <div class="brand"><i></i>Marea Fresca</div>
+          <p class="st-title">Familias que pescan en el municipio</p>
+          <div class="bars"><i style="height:45%"></i><i style="height:70%"></i><i style="height:100%"></i><i style="height:60%"></i><i style="height:80%"></i></div>
+          <div class="axis"><span>lun</span><span>mar</span><span>mié</span><span>jue</span><span>vie</span></div>
+          <div class="sketch" style="border-style:solid;border-color:#2A3540">Los números muestran cuánto pescado se pierde cada semana. Eso justifica la app.</div>
+        </div>
+
+        <div class="stage" data-s="4">
+          <div class="brand"><i></i>Marea Fresca</div>
+          <p class="st-title">Avisos automáticos</p>
+          <div class="bot"><i>R</i>El robot trabaja solo</div>
+          <div class="bubble"><small>hoy 6:12 a. m.</small>Llegó pescado nuevo: pargo rojo, 40 kg. ¿Quieres reservar?</div>
+          <div class="bubble"><small>hoy 6:40 a. m.</small>Tu pedido está listo en el muelle 2.</div>
+        </div>
+
+        <div class="stage" data-s="5">
+          <div class="brand"><i></i>Marea Fresca</div>
+          <p class="st-title">Asistente de la app</p>
+          <div class="bubble me">¿Qué me recomiendas para hoy?</div>
+          <div class="bubble"><small>asistente</small>Pargo rojo: llegó fresco esta mañana y está en buen precio. ¿Te aparto un kilo?</div>
+          <div class="bubble me">Sí, dale.</div>
+        </div>
+
+        <div class="stage" data-s="6">
+          <div class="brand"><i></i>Marea Fresca</div>
+          <div class="lock">
+            <svg viewBox="0 0 64 64" fill="none" stroke="#658BE4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="28" width="40" height="28" rx="6"/><path d="M20 28v-8a12 12 0 0 1 24 0v8"/><circle cx="32" cy="42" r="3" fill="#658BE4"/></svg>
+            <p>Datos de los pescadores y pedidos protegidos.<br>Lista para mostrarla al mundo.</p>
+          </div>
+        </div>
+
+      </div></div>
+      <p class="code mono" id="d-code">marea<span class="s">.surfear</span>(<span class="v">"innovacion"</span>) ⇒ idea;</p>
+    </div>
+  </div>
+
+  <!-- aviso -->
+  <div class="aviso">
+    <div class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0A0E12" stroke-width="2.2" stroke-linecap="round"><path d="M3 15c3-4 6-4 9 0s6 4 9 0"/><path d="M3 9c3-4 6-4 9 0s6 4 9 0"/></svg></div>
+    <p><b>¿Solo tenés tiempo para una ola?</b> Tranquilo: cada ola se surfea sola y te deja algo construido. Pero si surfeás las siete, salís con un producto que es tuyo.</p>
+  </div>
+
+  <!-- modalidades -->
+  <div class="modos">
+    <div class="modo">
+      <h4>Una marejada</h4>
+      <p class="sub">Una ola, una jornada</p>
+      <ul>
+        <li>Elegimos juntos la ola que más le sirve a tu colegio</li>
+        <li>Cada estudiante sale con el entregable de esa ola</li>
+        <li>Y con su primera insignia</li>
+      </ul>
+      <a class="cta ghost" href="#colegios">Traer una ola a mi colegio</a>
+    </div>
+    <div class="modo full">
+      <h4>La Marea completa</h4>
+      <p class="sub">Siete olas, un producto por estudiante</p>
+      <ul>
+        <li>Las siete olas conectadas, sesión a sesión</li>
+        <li>Cada estudiante construye su propio producto</li>
+        <li>Cierre con la Feria de la Marea: lo presentan ante su colegio y su familia</li>
+      </ul>
+      <a class="cta coral" href="#colegios">Traer la Marea a mi colegio</a>
+    </div>
+  </div>
+
+  <div class="feria">
+    <p class="big">Cada ola que surfeás te deja una insignia.<br>Y cuando completás la Marea, ya no sos el mismo.</p>
+    <p class="small">La Marea termina en una feria donde cada estudiante dice: "esto lo hice yo".</p>
+  </div>
+</section>
+
+<script>
+  const olas = [
+    {v:"--inno", n:"Ola de Innovación", p:"Convierte los problemas de tu territorio en ideas que valen.", r:"Un problema real de tu pueblo. Nada más.", l:"Una idea con nombre y forma: qué resuelve, para quién y cómo se llama.", e:"Tu idea con nombre → la Ola de Diseño", antes:"empieza la Marea", code:'marea<span class="s">.surfear</span>(<span class="v">"innovacion"</span>) ⇒ idea;'},
+    {v:"--diseno", n:"Ola de Diseño", p:"Crea tecnología que la gente ame usar.", r:"Tu idea con nombre, de la Ola de Innovación.", l:"Tu idea con cara: logo, colores y las pantallas dibujadas de cómo se vería en un celular.", e:"Tus pantallas → la Ola de Programación", antes:"viene de Innovación", code:'marea<span class="s">.surfear</span>(<span class="v">"diseno"</span>) ⇒ cara;'},
+    {v:"--prog", n:"Ola de Programación", p:"Aprende a hablarle a las máquinas, y a que te obedezcan.", r:"Tus pantallas dibujadas, de la Ola de Diseño.", l:"La primera versión que funciona de verdad, con la IA como copiloto.", e:"Tu app funcionando → la Ola de Datos", antes:"viene de Diseño", code:'marea<span class="s">.surfear</span>(<span class="v">"programacion"</span>) ⇒ app;'},
+    {v:"--datos", n:"Ola de Datos", p:"Lee las historias escondidas en los números.", r:"Tu app funcionando, de la Ola de Programación.", l:"Evidencia real: a quién le sirve, cuántos son y qué dicen los números de tu región.", e:"Tu app con evidencia → la Ola de Automatización", antes:"viene de Programación", code:'marea<span class="s">.surfear</span>(<span class="v">"datos"</span>) ⇒ evidencia;'},
+    {v:"--auto", n:"Ola de Automatización", p:"Pon a los robots a hacer lo aburrido, para que tú hagas lo importante.", r:"Tu app con evidencia, de la Ola de Datos.", l:"Un robot que le hace lo aburrido a tu app: avisa, responde, ordena.", e:"Tu app con su robot → la Ola de IA", antes:"viene de Datos", code:'marea<span class="s">.surfear</span>(<span class="v">"automatizacion"</span>) ⇒ robot;'},
+    {v:"--ia", n:"Ola de IA", p:"Descubre cómo se le enseña a pensar a una máquina (y por qué tú mandas).", r:"Tu app con su robot, de la Ola de Automatización.", l:"Una app que piensa: un asistente inteligente dentro de lo que creaste.", e:"Tu app que piensa → la Ola de Seguridad", antes:"viene de Automatización", code:'marea<span class="s">.surfear</span>(<span class="v">"ia"</span>) ⇒ asistente;'},
+    {v:"--seg", n:"Ola de Seguridad", p:"Aprende a proteger lo que el mundo digital quiere robar.", r:"Tu app completa, de la Ola de IA.", l:"Tu producto protegido, listo para mostrarlo al mundo.", e:"Tu producto → la Feria de la Marea", antes:"cierra la Marea", code:'marea<span class="s">.completar</span>() ⇒ <span class="v">"esto lo hice yo"</span>;'}
+  ];
+  const $ = s => document.querySelector(s);
+  const nodos = [...document.querySelectorAll('.nodo')];
+  const stages = [...document.querySelectorAll('.stage')];
+  const viva = $('#ola-viva');
+  let i = 0;
+  function ir(k){
+    i = Math.max(0, Math.min(6, k));
+    const o = olas[i];
+    document.documentElement.style.setProperty('--ola', `var(${o.v})`);
+    $('#d-num').textContent = `ola ${i+1} de 7`;
+    $('#d-antes').textContent = o.antes;
+    $('#d-nombre').textContent = o.n;
+    $('#d-promesa').textContent = o.p;
+    $('#d-recibe').textContent = o.r;
+    $('#d-lleva').textContent = o.l;
+    $('#d-entrega').textContent = o.e;
+    $('#d-code').innerHTML = o.code;
+    nodos.forEach((b,j)=>{ b.setAttribute('aria-pressed', j===i); b.classList.toggle('done', j<i); });
+    stages.forEach((s,j)=> s.classList.toggle('on', j===i));
+    $('#b-ant').disabled = i===0;
+    $('#b-sig').textContent = i===6 ? 'Ir a la Feria de la Marea →' : 'Surfear la siguiente ola →';
+    // la ola viva avanza por la travesía hasta el nodo activo
+    const avance = (i/6)*100;
+    viva.setAttribute('stroke-dasharray', `${Math.max(avance,3)} 100`);
+  }
+  nodos.forEach(b=> b.addEventListener('click', ()=> ir(+b.dataset.i)));
+  $('#b-ant').addEventListener('click', ()=> ir(i-1));
+  $('#b-sig').addEventListener('click', ()=> { if(i===6){ $('.feria').scrollIntoView({behavior:'smooth'}); } else ir(i+1); });
+  ir(0);
+</script>
+</body>
+</html>
