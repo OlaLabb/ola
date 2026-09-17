@@ -91,7 +91,7 @@ export const nav = {
   cerrarMenu: "Cerrar menú",
   /** Anclas del menu: cada `href` es el id real de su seccion. */
   enlaces: [
-    { label: "Las olas", href: "#olas" },
+    { label: "Las olas", href: "#la-marea" },
     { label: "Pruébalo", href: "#consola" },
     { label: "Colegios", href: "#colegios" },
     { label: "Los que traen la ola", href: "#los-que-traen-la-ola" },
@@ -196,12 +196,17 @@ export const queEs = {
 
 /**
  * ---------------------------------------------------------------------------
- * LAS OLAS — el corazon de la marca
+ * LAS OLAS — el registro de las siete
  * ---------------------------------------------------------------------------
  * Cada tema del programa es UNA OLA: llega al territorio, envuelve al
  * estudiante y se va dejando algo construido. Nadie "toma un curso" ni "ve un
  * modulo": se monta en la ola y la surfea. Ese es el lenguaje de toda la
  * pagina.
+ *
+ * Aqui vive la identidad de cada ola (nombre y color). Su seccion propia —las
+ * tarjetas— la reemplazo "La Marea" (`laMarea`, mas abajo), que las cuenta
+ * conectadas y en su orden de travesia; el directorio de voluntarios sigue
+ * leyendo nombre y color de aqui.
  *
  * Sobre los colores: cada ola tiene el suyo y no se repite, porque el color es
  * lo que la hace reconocible antes de leer el nombre. El de la Ola de IA
@@ -210,35 +215,23 @@ export const queEs = {
  * ---------------------------------------------------------------------------
  */
 export type Ola = {
-  id: string;
+  id: IdOla;
   /** Nombre completo, tal como se dice en voz alta. */
   nombre: string;
   /** La promesa: que te pasa mientras la surfeas. */
   promesa: string;
-  /** Lo que te llevas construido al salir del agua. Se revela al pasar el cursor. */
-  entregable: string;
-  /** Color en hex: tine la olita, el nombre y el resplandor de la tarjeta. */
+  /** Color en hex: la ola se reconoce por el antes de leer su nombre. */
   color: string;
   /** Marca de la ola: el icono que la nombra antes de leerla. Ver components/Icono.tsx. */
   icono: NombreIcono;
 };
 
 export const olas = {
-  id: "olas",
-  kicker: "// nuestro programa",
-  titulo: "Aquí no hay clases. Hay olas.",
-  intro:
-    "Cada tema que llevamos al territorio es una ola: llega, te envuelve y te deja algo construido. No las dictamos — las surfeamos juntos. Estas son las olas de nuestra marea:",
-  /** Linea que se revela en cada tarjeta, antes del entregable. */
-  prefijoEntregable: "Al surfearla te llevas:",
-  cierre:
-    "Cada ola que surfeas te deja una insignia. Y cuando completas la marea… ya no eres el mismo.",
   items: [
     {
       id: "programacion",
       nombre: "La Ola de Programación",
       promesa: "Aprende a hablarle a las máquinas — y a que te obedezcan.",
-      entregable: "tu primer programa funcionando",
       color: "#78DCA0",
       icono: "programacion",
     },
@@ -247,7 +240,6 @@ export const olas = {
       nombre: "La Ola de IA",
       promesa:
         "Descubre cómo se le enseña a pensar a una máquina (y por qué tú mandas).",
-      entregable: "tu primer asistente inteligente",
       color: "#FF8A73",
       icono: "ia",
     },
@@ -255,7 +247,6 @@ export const olas = {
       id: "innovacion",
       nombre: "La Ola de Innovación",
       promesa: "Convierte los problemas de tu territorio en ideas que valen.",
-      entregable: "una idea de tu territorio convertida en proyecto",
       color: "#5AC8EB",
       icono: "innovacion",
     },
@@ -263,7 +254,6 @@ export const olas = {
       id: "datos",
       nombre: "La Ola de Datos",
       promesa: "Lee las historias escondidas en los números.",
-      entregable: "un análisis real con datos de tu región",
       color: "#7FD8D8",
       icono: "datos",
     },
@@ -271,7 +261,6 @@ export const olas = {
       id: "diseno",
       nombre: "La Ola de Diseño",
       promesa: "Crea tecnología que la gente ame usar.",
-      entregable: "el diseño de tu primera app",
       color: "#F2A0C0",
       icono: "diseno",
     },
@@ -280,7 +269,6 @@ export const olas = {
       nombre: "La Ola de Automatización",
       promesa:
         "Pon a los robots a hacer lo aburrido, para que tú hagas lo importante.",
-      entregable: "un robot que trabaja por ti",
       color: "#9B8CFF",
       icono: "automatizacion",
     },
@@ -288,11 +276,278 @@ export const olas = {
       id: "seguridad",
       nombre: "La Ola de Seguridad",
       promesa: "Aprende a proteger lo que el mundo digital quiere robar.",
-      entregable: "el escudo digital de tu familia",
       color: "#5A8CEB",
       icono: "seguridad",
     },
   ] satisfies Ola[],
+};
+
+/**
+ * ---------------------------------------------------------------------------
+ * LA MAREA — las siete olas, conectadas
+ * ---------------------------------------------------------------------------
+ * Reemplaza a las tarjetas de "Aqui no hay clases. Hay olas.". La idea que
+ * cambia: las olas no son siete temas sueltos, son una travesia. Cada una
+ * recibe lo que dejo la anterior, y al final el estudiante sale con un producto
+ * suyo. "Marea Fresca" es la app de ejemplo que crece ola por ola en el
+ * celular de la seccion.
+ *
+ * El orden de `olas` aqui es el de la travesia (Innovacion -> Seguridad), no el
+ * del registro de arriba. El color NO se repite aqui: sale de `olas.items` por
+ * `id`, para que cada ola se vea igual en toda la pagina.
+ *
+ * Los textos son los del mockup aprobado, tal cual (voseo incluido).
+ * ---------------------------------------------------------------------------
+ */
+export type OlaDeLaMarea = {
+  /** El `id` de la ola en `olas.items`: de ahi salen su color y su identidad. */
+  id: IdOla;
+  /** Lo que se lee debajo del nodo de la travesia. */
+  corto: string;
+  nombre: string;
+  promesa: string;
+  /** De donde viene: acompana al "ola n de 7". */
+  antes: string;
+  recibe: string;
+  lleva: string;
+  entrega: string;
+  /**
+   * La linea de codigo bajo el celular: `marea{metodo}({argumento}) ⇒ {resultado};`.
+   * `resultadoEsTexto` pinta el resultado como string (el cierre de la Marea).
+   */
+  codigo: {
+    metodo: string;
+    argumento?: string;
+    resultado: string;
+    resultadoEsTexto?: boolean;
+  };
+};
+
+export const laMarea = {
+  id: "la-marea",
+  /** `marea.conectar(olas) ⇒ producto;` — el metodo va en oceano. */
+  kicker: { objeto: "marea", metodo: ".conectar", resto: "(olas) ⇒ producto;" },
+  titulo: "Siete olas. Un producto tuyo.",
+  lead: {
+    antes:
+      "Aquí no hay clases. Hay olas, y van conectadas: cada una toma lo que la anterior dejó. Surfeás la primera con un problema de tu pueblo y salís de la última con ",
+    resaltado: "una app que inventaste vos",
+    despues: ", con nombre, cara, código y candado.",
+  },
+  travesiaEtiqueta: "Las siete olas de la Marea",
+  numero: (n: number, total: number) => `ola ${n} de ${total}`,
+  pasos: {
+    recibe: "Recibís",
+    lleva: "Te llevás",
+    entrega: "Le pasás a la siguiente",
+  },
+  anterior: "← Ola anterior",
+  siguiente: "Surfear la siguiente ola →",
+  /** En la ultima ola el boton de avanzar lleva al cierre de la seccion. */
+  irAFeria: "Ir a la Feria de la Marea →",
+  olas: [
+    {
+      id: "innovacion",
+      corto: "Innovación",
+      nombre: "Ola de Innovación",
+      promesa: "Convierte los problemas de tu territorio en ideas que valen.",
+      antes: "empieza la Marea",
+      recibe: "Un problema real de tu pueblo. Nada más.",
+      lleva:
+        "Una idea con nombre y forma: qué resuelve, para quién y cómo se llama.",
+      entrega: "Tu idea con nombre → la Ola de Diseño",
+      codigo: { metodo: ".surfear", argumento: '"innovacion"', resultado: "idea" },
+    },
+    {
+      id: "diseno",
+      corto: "Diseño",
+      nombre: "Ola de Diseño",
+      promesa: "Crea tecnología que la gente ame usar.",
+      antes: "viene de Innovación",
+      recibe: "Tu idea con nombre, de la Ola de Innovación.",
+      lleva:
+        "Tu idea con cara: logo, colores y las pantallas dibujadas de cómo se vería en un celular.",
+      entrega: "Tus pantallas → la Ola de Programación",
+      codigo: { metodo: ".surfear", argumento: '"diseno"', resultado: "cara" },
+    },
+    {
+      id: "programacion",
+      corto: "Programación",
+      nombre: "Ola de Programación",
+      promesa: "Aprende a hablarle a las máquinas, y a que te obedezcan.",
+      antes: "viene de Diseño",
+      recibe: "Tus pantallas dibujadas, de la Ola de Diseño.",
+      lleva:
+        "La primera versión que funciona de verdad, con la IA como copiloto.",
+      entrega: "Tu app funcionando → la Ola de Datos",
+      codigo: {
+        metodo: ".surfear",
+        argumento: '"programacion"',
+        resultado: "app",
+      },
+    },
+    {
+      id: "datos",
+      corto: "Datos",
+      nombre: "Ola de Datos",
+      promesa: "Lee las historias escondidas en los números.",
+      antes: "viene de Programación",
+      recibe: "Tu app funcionando, de la Ola de Programación.",
+      lleva:
+        "Evidencia real: a quién le sirve, cuántos son y qué dicen los números de tu región.",
+      entrega: "Tu app con evidencia → la Ola de Automatización",
+      codigo: {
+        metodo: ".surfear",
+        argumento: '"datos"',
+        resultado: "evidencia",
+      },
+    },
+    {
+      id: "automatizacion",
+      corto: "Automatización",
+      nombre: "Ola de Automatización",
+      promesa:
+        "Pon a los robots a hacer lo aburrido, para que tú hagas lo importante.",
+      antes: "viene de Datos",
+      recibe: "Tu app con evidencia, de la Ola de Datos.",
+      lleva:
+        "Un robot que le hace lo aburrido a tu app: avisa, responde, ordena.",
+      entrega: "Tu app con su robot → la Ola de IA",
+      codigo: {
+        metodo: ".surfear",
+        argumento: '"automatizacion"',
+        resultado: "robot",
+      },
+    },
+    {
+      id: "ia",
+      corto: "IA",
+      nombre: "Ola de IA",
+      promesa:
+        "Descubre cómo se le enseña a pensar a una máquina (y por qué tú mandas).",
+      antes: "viene de Automatización",
+      recibe: "Tu app con su robot, de la Ola de Automatización.",
+      lleva:
+        "Una app que piensa: un asistente inteligente dentro de lo que creaste.",
+      entrega: "Tu app que piensa → la Ola de Seguridad",
+      codigo: { metodo: ".surfear", argumento: '"ia"', resultado: "asistente" },
+    },
+    {
+      id: "seguridad",
+      corto: "Seguridad",
+      nombre: "Ola de Seguridad",
+      promesa: "Aprende a proteger lo que el mundo digital quiere robar.",
+      antes: "cierra la Marea",
+      recibe: "Tu app completa, de la Ola de IA.",
+      lleva: "Tu producto protegido, listo para mostrarlo al mundo.",
+      entrega: "Tu producto → la Feria de la Marea",
+      codigo: {
+        metodo: ".completar",
+        resultado: '"esto lo hice yo"',
+        resultadoEsTexto: true,
+      },
+    },
+  ] satisfies OlaDeLaMarea[],
+
+  /** El celular: "Marea Fresca" creciendo ola por ola. Una pantalla por ola. */
+  hilo: {
+    antes: "Así crece ",
+    app: "Marea Fresca",
+    despues: ", la app de ejemplo, ola por ola",
+  },
+  celular: {
+    innovacion: {
+      titulo: "Cuaderno de Innovación",
+      problema: "El pescado se pierde porque no hay a quién venderlo a tiempo.",
+      idea: "Una app para que los pescadores del pueblo vendan directo, sin intermediarios.",
+      paraQuien: "¿Para quién? Pescadores y familias de Buenaventura.",
+    },
+    diseno: {
+      titulo: "Diseño",
+      pantallas: "Tres pantallas",
+      recorrido: "Lo que hay hoy · cuánto cuesta · cómo pido",
+    },
+    programacion: {
+      titulo: "Pescado de hoy",
+      productos: [
+        { nombre: "Pargo rojo", precio: "$18.000/kg" },
+        { nombre: "Corvina", precio: "$15.000/kg" },
+        { nombre: "Camarón tití", precio: "$22.000/kg" },
+      ],
+      boton: "Pedir ahora",
+    },
+    datos: {
+      titulo: "Familias que pescan en el municipio",
+      /** Alto de cada barra, en % del grafico. */
+      barras: [45, 70, 100, 60, 80],
+      dias: ["lun", "mar", "mié", "jue", "vie"],
+      nota: "Los números muestran cuánto pescado se pierde cada semana. Eso justifica la app.",
+    },
+    automatizacion: {
+      titulo: "Avisos automáticos",
+      inicial: "R",
+      robot: "El robot trabaja solo",
+      avisos: [
+        {
+          hora: "hoy 6:12 a. m.",
+          texto: "Llegó pescado nuevo: pargo rojo, 40 kg. ¿Quieres reservar?",
+        },
+        { hora: "hoy 6:40 a. m.", texto: "Tu pedido está listo en el muelle 2." },
+      ],
+    },
+    ia: {
+      titulo: "Asistente de la app",
+      quien: "asistente",
+      pregunta: "¿Qué me recomiendas para hoy?",
+      respuesta:
+        "Pargo rojo: llegó fresco esta mañana y está en buen precio. ¿Te aparto un kilo?",
+      confirma: "Sí, dale.",
+    },
+    seguridad: {
+      lineas: [
+        "Datos de los pescadores y pedidos protegidos.",
+        "Lista para mostrarla al mundo.",
+      ],
+    },
+  },
+
+  aviso: {
+    resaltado: "¿Solo tenés tiempo para una ola?",
+    texto:
+      " Tranquilo: cada ola se surfea sola y te deja algo construido. Pero si surfeás las siete, salís con un producto que es tuyo.",
+  },
+  /** Las dos formas de traer la Marea. Ambos CTA llevan a la seccion de colegios. */
+  modos: [
+    {
+      titulo: "Una marejada",
+      sub: "Una ola, una jornada",
+      items: [
+        "Elegimos juntos la ola que más le sirve a tu colegio",
+        "Cada estudiante sale con el entregable de esa ola",
+        "Y con su primera insignia",
+      ],
+      cta: "Traer una ola a mi colegio",
+      completa: false,
+    },
+    {
+      titulo: "La Marea completa",
+      sub: "Siete olas, un producto por estudiante",
+      items: [
+        "Las siete olas conectadas, sesión a sesión",
+        "Cada estudiante construye su propio producto",
+        "Cierre con la Feria de la Marea: lo presentan ante su colegio y su familia",
+      ],
+      cta: "Traer la Marea a mi colegio",
+      completa: true,
+    },
+  ],
+  feria: {
+    lineas: [
+      "Cada ola que surfeás te deja una insignia.",
+      "Y cuando completás la Marea, ya no sos el mismo.",
+    ],
+    pie: 'La Marea termina en una feria donde cada estudiante dice: "esto lo hice yo".',
+  },
 };
 
 export type Camino = {
@@ -452,7 +707,7 @@ export const consola = {
  * ---------------------------------------------------------------------------
  * La invitacion y las preguntas que la responden, juntas. Antes estaban
  * separadas por otra seccion: el colegio leia "escribannos" y tenia que seguir
- * bajando para saber cuanto cuesta y que le van a pedir. Las cuatro preguntas
+ * bajando para saber cuanto cuesta y que le van a pedir. Las preguntas
  * son justamente las que se hacen ANTES de decir que si, asi que van debajo
  * del boton, no dos pantallas mas abajo.
  *
@@ -492,6 +747,11 @@ export const colegios = {
       pregunta: "¿Qué debe hacer el colegio?",
       respuesta:
         "Escribirnos, contarnos sus grados y tiempos, y prestarnos el espacio. Del resto nos encargamos.",
+    },
+    {
+      pregunta: "¿Tenemos que hacer las siete olas?",
+      respuesta:
+        "No. Cada ola se surfea sola y deja algo construido. Pero si el colegio puede recibir la Marea completa, cada estudiante termina con un producto propio y lo presenta en la Feria de la Marea. Siempre proponemos la Marea; la marejada de una sola ola es la puerta de entrada.",
     },
   ],
 };

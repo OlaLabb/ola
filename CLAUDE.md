@@ -155,8 +155,8 @@ agregar uno: una entrada más en `TRAZOS`. **Si un ícono se dibuja dos veces, e
 nombre** — nada de SVG sueltos en los componentes.
 
 Las excepciones son las piezas que no son íconos sino ilustración: `IconoOlas` e
-`IconoCerrar` en [`components/Nav.tsx`](components/Nav.tsx), la olita animada de las
-tarjetas en [`components/Olas.tsx`](components/Olas.tsx) y
+`IconoCerrar` en [`components/Nav.tsx`](components/Nav.tsx), la travesía y el candado del
+celular en [`components/LaMarea.tsx`](components/LaMarea.tsx) y
 [`components/OlaDivisoria.tsx`](components/OlaDivisoria.tsx).
 
 > Los emojis dentro de los strings del código de la consola se quedan: son la salida del
@@ -247,7 +247,7 @@ al final quienes traen la ola.
 | --- | --- | --- | --- |
 | — | Hero + mar vivo | [`Hero`](components/Hero.tsx) + [`MarVivo`](components/MarVivo.tsx) + [`Estrellas`](components/Estrellas.tsx) | `noche` |
 | 01 | Qué es *(+ los 4 frentes)* | [`QueEs`](components/QueEs.tsx) | `profundo` |
-| 02 | **Las olas** | [`Olas`](components/Olas.tsx) | degradado → `profundo.abismo` |
+| 02 | **La Marea** *(las 7 olas conectadas)* | [`LaMarea`](components/LaMarea.tsx) | `noche` |
 | 03 | **Pruébalo** *(el laboratorio)* | [`Consola`](components/Consola.tsx) | **`espuma`** ← claro |
 | 04 | Los caminos | [`Caminos`](components/Caminos.tsx) | `profundo.abismo` |
 | 05 | Colegios *(+ las preguntas)* | [`Colegios`](components/Colegios.tsx) | **`espuma`** ← claro |
@@ -275,8 +275,8 @@ wordmark normal es invisible), [`Movimiento`](components/Movimiento.tsx)
 El **nav** son cinco destinos: cuatro anclas (Las olas · Pruébalo · Colegios · Los que traen
 la ola) y el CTA "Trae la ola", que va aparte porque es el único que pide algo.
 
-Solo son *client components* los que lo necesitan: `Hero`, `MarVivo`, `Nav`, `Caminos`,
-`Consola`, `Directorio`, `Compartir`, `Movimiento`. Todo lo demás se renderiza en el servidor.
+Solo son *client components* los que lo necesitan: `Hero`, `MarVivo`, `Nav`, `LaMarea`,
+`Caminos`, `Consola`, `Directorio`, `Compartir`, `Movimiento`. Todo lo demás se renderiza en el servidor.
 
 ### El directorio de voluntarios ([`components/LosQueTraenLaOla.tsx`](components/LosQueTraenLaOla.tsx))
 
@@ -356,8 +356,6 @@ robots. Hoy apunta a `https://ola.olalabgimti.workers.dev`.
 
 - `prefers-reduced-motion` respetado en toda la página: el mar se congela como postal.
 - Navegación por teclado completa; foco visible en todos los interactivos.
-- Lo que el cursor revela (el entregable de cada ola), el teclado también. En pantallas
-  táctiles —donde no hay hover— se muestra siempre.
 - Salto "Saltar al contenido" al inicio del `<body>`.
 
 ---

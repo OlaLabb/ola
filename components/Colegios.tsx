@@ -4,7 +4,7 @@ import { colegios, whatsapp } from "@/content/site";
 /* ---------------------------------------------------------------------------
  * PARA COLEGIOS
  * ---------------------------------------------------------------------------
- * La invitacion y las cuatro preguntas que la responden, en la misma seccion:
+ * La invitacion y las preguntas que la responden, en la misma seccion:
  * son justo las que se hacen antes de decir que si, asi que van debajo del
  * boton y no dos pantallas mas abajo.
  *

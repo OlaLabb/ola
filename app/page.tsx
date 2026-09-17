@@ -4,10 +4,10 @@ import Consola from "@/components/Consola";
 import Empresas from "@/components/Empresas";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
+import LaMarea from "@/components/LaMarea";
 import LosQueTraenLaOla from "@/components/LosQueTraenLaOla";
 import Nav from "@/components/Nav";
 import OlaDivisoria from "@/components/OlaDivisoria";
-import Olas from "@/components/Olas";
 import QueEs from "@/components/QueEs";
 import Ruta from "@/components/Ruta";
 import TraeLaOla from "@/components/TraeLaOla";
@@ -17,7 +17,7 @@ import TraeLaOla from "@/components/TraeLaOla";
  * EL ORDEN DE LA PAGINA
  * ---------------------------------------------------------------------------
  * Primero el viaje completo del estudiante, seguido y sin interrupciones:
- * el gancho, las olas, probarlo con las manos y a donde lleva. Solo despues
+ * el gancho, la Marea, probarlo con las manos y a donde lleva. Solo despues
  * viene el tramo para colegios, y al final quienes traen la ola.
  *
  * El laboratorio subio por delante de los caminos: la pregunta "¿a donde
@@ -59,9 +59,10 @@ export default function Page() {
         {/* --- El viaje del estudiante ------------------------------------ */}
         <Hero />
         <QueEs />
-        <Olas />
+        {/* Las siete olas, conectadas: reemplaza a las tarjetas de las olas. */}
+        <LaMarea />
 
-        <OlaDivisoria arriba={FONDO.abismo} abajo={FONDO.espuma} />
+        <OlaDivisoria arriba={FONDO.noche} abajo={FONDO.espuma} />
         {/* Aqui deja de leer y escribe su primera linea. */}
         <Consola />
         <OlaDivisoria

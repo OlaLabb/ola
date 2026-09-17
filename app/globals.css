@@ -419,94 +419,140 @@
 }
 
 /* --------------------------------------------------------------------------
-   LAS OLAS
-   Cada tarjeta lleva su propia olita: un SVG con el mismo trazo repetido
-   varias veces, que se desplaza exactamente un periodo (60 unidades del
-   viewBox) para que el bucle sea invisible — el mismo truco del mar del hero,
-   en miniatura.
+   LA MAREA
+   Lo que las utilidades de Tailwind no alcanzan a decir con comodidad: los
+   estados de los nodos de la travesia (activo por `aria-pressed`, ya surfeado
+   por `.hecho`), la entrada de cada pantalla del celular y los bocetos de
+   pantallas de la Ola de Diseno.
 
-   En reposo la olita deriva despacio (esta viva, pero no pide atencion). Al
-   pasar el cursor o al enfocar la tarjeta con el teclado, la marea se acelera
-   y aparece el entregable. Acelerar no produce salto visible porque el trazo
-   es periodico: cualquier fase se ve igual.
+   Cada nodo trae sus colores como variables desde el componente: `--nc` (el
+   de su ola), `--nc-halo` (al 22%) y `--nc-hecho` (al 30% sobre noche). Van
+   precalculados para no depender de color-mix().
    -------------------------------------------------------------------------- */
-@keyframes olita-deriva {
+
+/* En esta seccion el foco va en coral, como en el mockup aprobado. */
+.marea :where(a, button):focus-visible {
+  outline-color: theme("colors.atardecer");
+}
+
+.marea-nodo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: theme("colors.espuma");
+}
+
+.marea-nodo-numero {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 2px solid var(--nc);
+  border-radius: 50%;
+  background: theme("colors.noche");
+  color: var(--nc);
+  font-size: 15px;
+  font-weight: 600;
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s,
+    background 0.25s;
+}
+
+.marea-nodo-nombre {
+  font-size: 13px;
+  line-height: 1.2;
+  text-align: center;
+  color: #9aa3ab;
+}
+
+.marea-nodo:hover .marea-nodo-numero {
+  transform: scale(1.08);
+}
+
+.marea-nodo.hecho .marea-nodo-numero {
+  background: var(--nc-hecho);
+}
+
+.marea-nodo[aria-pressed="true"] .marea-nodo-numero {
+  background: var(--nc);
+  color: theme("colors.noche");
+  transform: scale(1.15);
+  box-shadow: 0 0 0 8px var(--nc-halo);
+}
+
+.marea-nodo[aria-pressed="true"] .marea-nodo-nombre {
+  color: theme("colors.espuma");
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  .marea-nodo-nombre {
+    font-size: 12px;
+  }
+}
+
+/* Cada pantalla del celular entra subiendo un poco. */
+@keyframes marea-llega {
   from {
-    transform: translateX(0);
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
-    transform: translateX(-60px);
-  }
-}
-
-.olita-trazo {
-  will-change: transform;
-  animation: olita-deriva var(--deriva, 20s) linear infinite;
-}
-
-.ola-tarjeta {
-  transition: border-color 250ms ease, transform 250ms ease;
-}
-
-/* El resplandor del color de la ola: apagado hasta que la tarjeta despierta. */
-.ola-brillo {
-  opacity: 0;
-  transition: opacity 450ms ease;
-}
-
-.ola-entregable {
-  transition: opacity 300ms ease, transform 300ms ease;
-}
-
-/* Tres disparadores, un solo efecto: cursor, foco de teclado y foco interno.
-   Asi la tarjeta responde igual con mouse y con Tab. */
-.ola-tarjeta:hover,
-.ola-tarjeta:focus-visible,
-.ola-tarjeta:focus-within {
-  border-color: var(--ola-borde);
-  transform: translateY(-2px);
-}
-
-.ola-tarjeta:hover .ola-brillo,
-.ola-tarjeta:focus-visible .ola-brillo,
-.ola-tarjeta:focus-within .ola-brillo {
-  opacity: 1;
-}
-
-.ola-tarjeta:hover .olita-trazo,
-.ola-tarjeta:focus-visible .olita-trazo,
-.ola-tarjeta:focus-within .olita-trazo {
-  --deriva: 3.4s;
-}
-
-/* El entregable solo se esconde donde existe un cursor que lo pueda revelar.
-   En pantallas tactiles no hay hover: ahi se muestra siempre. */
-@media (hover: hover) and (pointer: fine) {
-  .ola-tarjeta .ola-entregable {
-    opacity: 0;
-    transform: translateY(3px);
-  }
-
-  .ola-tarjeta:hover .ola-entregable,
-  .ola-tarjeta:focus-visible .ola-entregable,
-  .ola-tarjeta:focus-within .ola-entregable {
     opacity: 1;
     transform: none;
   }
 }
 
-/* Con movimiento reducido la olita se queda quieta y la tarjeta no se levanta:
-   el contenido sigue completo, solo desaparece el movimiento. */
+.marea-pantalla {
+  animation: marea-llega 0.45s ease;
+}
+
+/* Boceto de una pantalla: dos rayas de titulo y tres de texto. */
+.marea-boceto {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  border: 1.5px solid #3a4650;
+  border-radius: 8px;
+}
+
+.marea-boceto::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  top: 6px;
+  height: 5px;
+  border-radius: 3px;
+  background: #2a3540;
+}
+
+.marea-boceto::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  right: 14px;
+  top: 16px;
+  height: 4px;
+  border-radius: 3px;
+  background: #2a3540;
+  box-shadow:
+    0 8px 0 #2a3540,
+    0 16px 0 #2a3540;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .olita-trazo {
+  .marea-pantalla {
     animation: none !important;
-    transform: none;
   }
 
-  .ola-tarjeta:hover,
-  .ola-tarjeta:focus-visible,
-  .ola-tarjeta:focus-within {
-    transform: none;
+  .marea-nodo-numero {
+    transition: none !important;
   }
 }
 
@@ -565,7 +611,7 @@
    gama baja promover veinte capas cuesta mas memoria de la que ahorra.
 
    El desplazamiento usa `translate`, la propiedad suelta, y NO `transform`.
-   No es capricho: `.ola-tarjeta:hover` ya usa `transform` para levantarse, y
+   No es capricho: las tarjetas usan `transform` para levantarse al hover, y
    como el selector de aqui pesa mas, un `transform` en el revelado le habria
    ganado y la tarjeta se habria quedado sin hover. `translate` se compone con
    `transform` en vez de pisarlo, asi que las dos cosas conviven. En un

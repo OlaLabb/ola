@@ -34,7 +34,8 @@ componentes para cambiar la página:
 | --- | --- |
 | Titulares, párrafos, kickers | las constantes `hero`, `queEs`, `frentes`, `olas`, `caminos`, `paraQuien`, `voluntarios`, `footer` |
 | Los 4 frentes de trabajo | `frentes.items` (cada uno con su `color`: `oceano`, `manglar`, `atardecer`, `coral`) |
-| Las olas del programa | `olas.items` (nombre, `promesa`, `entregable` y su color; cada tema del programa es **una ola**, nunca un "taller" ni un "módulo") |
+| Las olas del programa | `olas.items` (nombre, `promesa` y su color; cada tema del programa es **una ola**, nunca un "taller" ni un "módulo") |
+| La Marea (las olas conectadas, el celular de Marea Fresca, modalidades) | `laMarea` |
 | Los caminos de la tecnología | `caminos.items` (nombre, emoji, color, frase y "un día típico") |
 | Sumar un voluntario al directorio "Los que traen la ola" | un objeto más en [`content/voluntarios.ts`](content/voluntarios.ts) (contador, filtros y grilla salen solos); los textos de la sección, en `losQueTraenLaOla` |
 | Correo de contacto | `EMAIL` |
@@ -176,9 +177,8 @@ reposo), `amplitud`, `periodos` (más periodos = mar más lejano), `filo`
 - `prefers-reduced-motion` respetado en todo: el mar se congela, no hay parallax ni entradas.
 - Navegación por teclado completa; los caminos usan el patrón ARIA de tabs con flechas,
   Inicio/Fin y foco visible.
-- Las tarjetas de las olas son tabulables: lo que el cursor revela (el entregable), el
-  teclado también. En pantallas táctiles —donde no hay hover— se muestra siempre, y con
-  `prefers-reduced-motion` la olita de cada tarjeta se queda quieta.
+- Los nodos de La Marea son botones con `aria-pressed`; con `prefers-reduced-motion` las
+  pantallas del celular cambian sin animación.
 - Sin imágenes de mapa de bits en toda la página: el mar, las divisorias y el
   icono son SVG; la imagen de redes se genera en build.
 - Framer Motion se carga con `LazyMotion` (solo el subconjunto necesario) pensando en
